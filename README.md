@@ -1,7 +1,7 @@
 # AZUBI AFRICA TALENT MOBILITY PROGRAM ASSESSMENT
 
 ## ABOUT THE PROJECT
-As a member of the data analytics team, my role involves creating tools that use the bank's operational data to help the business achieve its goals and projections. 
+As a member of the data analytics team, my role involves creating tools that use the bank's operational data to help the business achieve its goals and projections.</br>
 For this project, I have been tasked to predict whether a client will subscribe to a term deposit (indicated by the variable "y" as "yes" or "n" as "no"). My task involves analyzing the dataset to assess trends and inisghts. Also, I am tasked to build a predictive model that determines the likelihood of a client subscribing to a term deposit based on the features provided in the dataset.
 
 Sample of my tasks are as follows;
