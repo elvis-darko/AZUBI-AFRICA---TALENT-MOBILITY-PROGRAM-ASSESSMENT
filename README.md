@@ -5,7 +5,7 @@ As a member of the data analytics team, my role involves creating tools that use
 For this project, I have been tasked to predict whether a client will subscribe to a term deposit (indicated by the variable "y" as "yes" or "n" as "no"). My task involves analyzing the dataset to assess trends and inisghts. Also, I am tasked to build a predictive model that determines the likelihood of a client subscribing to a term deposit based on the features provided in the dataset.
 
 Sample of my tasks are as follows;
-1. Conduct Exploratory Data Analysis (EDA) 
+1. Conduct Exploratory Data Analysis (EDA) < /br>
 I identify patterns, correlations, and any necessary data preprocessing steps, such as handling missing values, outliers, and data normalization. 
 
 
