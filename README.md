@@ -6,27 +6,22 @@ For this project, I have been tasked to predict whether a client will subscribe 
 
 Sample of my tasks are as follows;
 1. Conduct Exploratory Data Analysis (EDA) 
-
 I identify patterns, correlations, and any necessary data preprocessing steps, such as handling missing values, outliers, and data normalization. 
 
 
 2. Feature Engineering
-
 I evaluate which features might be most relevant to predicting client subscription and consider creating new features if applicable. 
 
 
 3. Build a Predictive Model 
-
 I use a machine learning algorithm of choice to build a model predicting the subscription outcome. 
 
 
 4. Evaluate Model Performance 
-
 I use appropriate metrics such as accuracy, precision, recall, and F1 score to assess model effectiveness. Also, I Consider any imbalanced classes and adjust accordingly, possibly using techniques like oversampling, undersampling, or adjusting the class weights. 
 
 
 5. Explain the Findings and Insights  
-
 I summarize key findings from the EDA and insights from the model, such as which features were most impactful, common characteristics of clients likely to subscribe, and actionable recommendations for the marketing team. 
 
 
