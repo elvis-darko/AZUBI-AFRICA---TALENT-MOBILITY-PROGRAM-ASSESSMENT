@@ -9,19 +9,19 @@ Sample of my tasks are as follows;
 I identify patterns, correlations, and any necessary data preprocessing steps, such as handling missing values, outliers, and data normalization. 
 
 
-2. Feature Engineering
+2. Feature Engineering</br>
 I evaluate which features might be most relevant to predicting client subscription and consider creating new features if applicable. 
 
 
-3. Build a Predictive Model 
+3. Build a Predictive Model</br> 
 I use a machine learning algorithm of choice to build a model predicting the subscription outcome. 
 
 
-4. Evaluate Model Performance 
+4. Evaluate Model Performance</br> 
 I use appropriate metrics such as accuracy, precision, recall, and F1 score to assess model effectiveness. Also, I Consider any imbalanced classes and adjust accordingly, possibly using techniques like oversampling, undersampling, or adjusting the class weights. 
 
 
-5. Explain the Findings and Insights  
+5. Explain the Findings and Insights</br>
 I summarize key findings from the EDA and insights from the model, such as which features were most impactful, common characteristics of clients likely to subscribe, and actionable recommendations for the marketing team. 
 
 
@@ -34,5 +34,5 @@ There are four datasets:
 - `bank-additional.csv with` 10% of the examples (4119), randomly selected from 1), and 20 inputs. 
 - `bank-full.csv` with all examples and 17 inputs, ordered by date (older version of this dataset with less inputs).  
 - `bank.csv` with 10% of the examples and 17 inputs, randomly selected from 3 (older version of this dataset with less inputs).
-
+</br>
 The features of the dataset are;
