@@ -92,3 +92,38 @@ Use these recommended steps to set up your local machine for this project:
 
             python -m pip install -r requirements.txt 
 
+
+# MACHINE LEARNING MODEL DEPLOYMENT
+## Run Streamlit App
+A streamlit app was added for further exploration of the model. The streamlit app provides a simple Graphic User Interface where predicitons can be made from inputs.
+
+- Run the demo app (being at the root of the repository):
+        
+        Streamlit run streamlit.app.py
+
+
+# EVALUATION
+
+The model would predict the likelihood of a client subscribing to a term limit given certain parameters.
+
+The final work would look like this:
+
+            user_id                                         DEPOSIT
+            00001dbe00e56fc4b1c1b65dda63de2a5ece55f9            0
+            000055d41c8a62052dd426592e8a4a3342bf565d            1
+            000081dd3245e6869a4a9c574c7050e7bb84c2c8            1
+
+
+# RESOURCES
+Here are some ressources you would read to have a good understanding of tools, packages and concepts used in the project:
+- [How to improve machine learning models](https://neptune.ai/blog/improving-ml-model-performance)
+- [Machine Learning tutorial - A step by step guide](https://github.com/eaedk/Machine-Learning-Tutorials/blob/main/ML_Step_By_Step_Guide.ipynb)
+- [Create user interfaces for machine learning models](https://www.youtube.com/watch?v=RiCQzBluTxU)
+- [Getting started with Streamlit](https://docs.streamlit.io/library/get-started)
+
+
+## CONTRIBUTORS
+| NAME  |   COUNTRY |   E-MAIL  |
+|:------|:----------|:----------|
+|ELVIS DARKO|GHANA|elvis_darko@outlook.com|
+
