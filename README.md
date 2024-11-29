@@ -35,25 +35,23 @@ There are four datasets:
 - `bank-full.csv` with all examples and 17 inputs, ordered by date (older version of this dataset with less inputs).  
 - `bank.csv` with 10% of the examples and 17 inputs, randomly selected from 3 (older version of this dataset with less inputs).
 
-The features of the dataset are;
-|VARAIABLE|DEFINITION|FEATURE|
+The data has 17 attributes which are listed in the table.
+|VARAIABLE|DEFINITION|DATA TYPE|
 |---------|----------|---------|
-|`user_id`| A  unique identification number of a client|Numeric|
-|`REGION` |The location of each client|Categorical|
-|`TENURE` |Duration of the network usage|Numeric|
-|`MONTANT` |The top-up amount|Numeric|
-|`FREQUENCE_RECH`| The number of times the customer refilled|Numeric|
-|`REVENUE`|The monthly income of each client|Numeric|
-|`ARPU_SEGMENT`|Income over 90 days / 3|Numeric|
-|`FREQUENCE`| The number of times the client has made an income|Numeric|
-|`DATA_VOLUME`| The number of connections|Numeric|
-|`ON_NET`|Inter Expresso calls|Numeric|
-|`ORANGE`|calls to Orange network|Numeric|
-|`TIGO`|calls to Tigo network|Numeric|
-|`ZONE1`| calls to zones1|Numeric|
-|`ZONE2`|calls to zones2|Numeric|
-|`MRG`|a client who is going|Categorical|
-|`REGULARITY`|The number of times the client is active for 90 days|Numeric|
-|`TOP_PACK`|The most active packs|Categorical|
-|`FREQ_TOP_PACK`|The number of times the client has activated the top pack packages|Numeric|
-|`CHURN`| Whether a client still patronizes the network or not. This is the variable to predict (Target Variable)|Binary|
+|`AGE`| Age of client|Numeric|
+|`JOB` |Type of job|Categorical|
+|`MARITAL` |Marital status of client|Categorical|
+|`EDUCATION` |Education level of client|Categorical|
+|`DEFAULT`| Has client's credit defaluted|Binary|
+|`HOUSING`|Does client have a house loan|Binary|
+|`BALANCE`|Client average yearly balance|Numeric|
+|`LOAN`| Does the client have a personal loan|Binary|
+|`CONTACT`| Type of communication with bank|Categorical|
+|`DAY`|Last contact day of the month|Numeric|
+|`MONTH`|Last contact month of the year |Categorical|
+|`DURATION`|Last contact duration in seconds|Numeric|
+|`CAMPAIGN`|Number of contacts performed during this campaign and for this client|Numeric, includes last contact|
+|`PDAYS`|Number of days that passed by after the client was last contacted from a previous campaign|Numeric, -1 means client was not previously contacted|
+|`PREVIOUS`|Number of contacts performed before this campaign and for this client|Numerical|
+|`POUTCOME`|Outcome of the previous marketing campaign|Categorical|
+|`Y`|Has the client subscribed a term deposit?|Binary|
