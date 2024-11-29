@@ -36,3 +36,24 @@ There are four datasets:
 - `bank.csv` with 10% of the examples and 17 inputs, randomly selected from 3 (older version of this dataset with less inputs).
 
 The features of the dataset are;
+|VARAIABLE|DEFINITION|FEATURE|
+|---------|----------|---------|
+|`user_id`| A  unique identification number of a client|Numeric|
+|`REGION` |The location of each client|Categorical|
+|`TENURE` |Duration of the network usage|Numeric|
+|`MONTANT` |The top-up amount|Numeric|
+|`FREQUENCE_RECH`| The number of times the customer refilled|Numeric|
+|`REVENUE`|The monthly income of each client|Numeric|
+|`ARPU_SEGMENT`|Income over 90 days / 3|Numeric|
+|`FREQUENCE`| The number of times the client has made an income|Numeric|
+|`DATA_VOLUME`| The number of connections|Numeric|
+|`ON_NET`|Inter Expresso calls|Numeric|
+|`ORANGE`|calls to Orange network|Numeric|
+|`TIGO`|calls to Tigo network|Numeric|
+|`ZONE1`| calls to zones1|Numeric|
+|`ZONE2`|calls to zones2|Numeric|
+|`MRG`|a client who is going|Categorical|
+|`REGULARITY`|The number of times the client is active for 90 days|Numeric|
+|`TOP_PACK`|The most active packs|Categorical|
+|`FREQ_TOP_PACK`|The number of times the client has activated the top pack packages|Numeric|
+|`CHURN`| Whether a client still patronizes the network or not. This is the variable to predict (Target Variable)|Binary|
