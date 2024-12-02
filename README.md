@@ -108,10 +108,14 @@ The model would predict the likelihood of a client subscribing to a term limit g
 
 The final work would look like this:
 
-            user_id                                         DEPOSIT
-            00001dbe00e56fc4b1c1b65dda63de2a5ece55f9            0
-            000055d41c8a62052dd426592e8a4a3342bf565d            1
-            000081dd3245e6869a4a9c574c7050e7bb84c2c8            1
+            client 1d                                   TERM DEPOSIT
+            00001                                            0
+            000055                                           1
+            000081                                           1
+
+`0 Stands for NO, meaning the client is not likely to suscribe to a term limit`
+`1 Stands for YES, meaning the client is likely to suscribe to a term limit`
+
 
 
 ## RESOURCES
