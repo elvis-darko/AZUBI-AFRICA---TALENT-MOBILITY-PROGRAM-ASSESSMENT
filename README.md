@@ -113,8 +113,8 @@ The final work would look like this:
             000055                                           1
             000081                                           1
 
-`0 Stands for NO, meaning the client is not likely to suscribe to a term limit`
-`1 Stands for YES, meaning the client is likely to suscribe to a term limit`
+- `0 Stands for NO, meaning the client is not likely to suscribe to a term limit`
+- `1 Stands for YES, meaning the client is likely to suscribe to a term limit`
 
 
 
