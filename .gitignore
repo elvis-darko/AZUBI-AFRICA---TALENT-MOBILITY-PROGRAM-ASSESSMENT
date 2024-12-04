@@ -110,6 +110,8 @@ ENV/
 env.bak/
 venv.bak/
 .env_tmp
+env_tmp/
+env_tmp.bak/
 
 # Spyder project settings
 .spyderproject
