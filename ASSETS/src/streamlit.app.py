@@ -40,12 +40,35 @@ def home_page():
     st.write(f"""
     <p>The following method will help you to use the app:</p>
     <ul>
-        <li>Input Features: Adjust values for customer features.</li>
+        <li>Input Features: Imput values for customer features.</li>
         <li>Click 'Predict': Get term deposit prediction."</li>
-        <li>Result: See if it's 'yes' or no.</li>
+        <li>Result: See if it's 'yes' or 'no'.</li>
         <li>Recommendations (no): Explore subscription suggestions.</li>
         <li>Accuracy Score: Check prediction performance."</li>
         <li>Feedback (no): Provide input for improvements.</li>
+    </ul>
+    """, unsafe_allow_html=True)
+    st.write(f"""
+    <p>The following are the features of clients:</p>
+    <ul>
+        <li>AGE : The Age of client (numeric)<li>
+        <li>JOB : Type of job (categorical: "administration","unknown","unemployed","management","housemaid","entrepreneur","student"blue-collar","self-employed","retired","technician","services")<li> 
+        <li>MARITAL : Marital status (categorical: "married","divorced","single"; note: "divorced" means divorced or widowed)<li>
+        <li>EDUCATION : Education level of client (categorical: "unknown","secondary","primary","tertiary")<li>
+        <li>DEFAULT: Does the client have a credit in default? (binary: "yes","no")<li>
+        <li>BALANCE: average yearly balance, in euros (numeric)<li>
+        <li>HOUSING: Has the client taken housing loan? (binary: "yes","no")<li>
+        <li>LOAN: Has the client taken personal loan? (binary: "yes","no")<li>
+        <li>CONTACT: Contact communication type (categorical: "unknown","telephone","cellular")<li> 
+        <li>DAY: Last contact day of the month (numeric)<li>
+        <li>MONTH: Last contact month of year (categorical: "jan", "feb", "mar", ..., "nov", "dec")<li>
+        <li>DURATION: Last contact duration, in seconds (numeric)<li>
+        <li>CAMPAIGN: Number of contacts performed during this campaign and for this client (numeric, includes last contact)<li>
+        <li>PDAYS: Number of days that passed by after the client was last contacted from a previous campaign (numeric, -1 means client was not previously contacted)<li>
+        <li>PREVIOUS: Number of contacts performed before this campaign and for this client (numeric)<li>
+        <li>POUTCOME: Outcome of the previous marketing campaign (categorical: "unknown","other","failure","success")<li>
+        <li>TERM_DEPOSIT : Has the client subscribed a term deposit? (binary: "yes","no")<li>
+        
     </ul>
     """, unsafe_allow_html=True)
 
@@ -73,20 +96,21 @@ def prediction_page():
 
 
     # Input form
-    tenure = st.slider('Tenure: Duration in the network', 1, 12, 7)
-    montant = st.number_input('Montant: Top-up amount', value=0.0)
-    frequence_rech = st.number_input('Frequence Recharge: Number of times the customer refilled', value=0.0)
-    revenue = st.number_input('Revenue: Monthly income of each client', value=0.0)
-    arpu_segment = st.number_input('ARPU Segment: Income over 90 days / 3', value=0.0)
-    frequence = st.number_input('Frequency: Number of times the customer refilled', value=0.0)
-    data_volume = st.number_input('Data Volume: Number of connections', value=0.0)
-    on_net = st.number_input('On Net: Inter-expresso call', value=0.0)
-    orange = st.number_input('Orange: Call to Orange', value=0.0)
-    tigo = st.number_input('Tigo: Call to Tigo', value=0.0)
-    zone1 = st.number_input('Zone1: Call to Zone1', value=0.0)
-    zone2 = st.number_input('Zone2: Call to Zone2', value=0.0)
-    regularity = st.slider('Regularity: Number of times the client is active for 90 days', 1, 61, 30)
-    freq_top_pack = st.number_input('Frequency Top Pack: Number of times the client has activated the top pack packages', value=0.0)
+    age = st.number_input('AGE: Age of client', 1, 12, 7)
+    job = st.number_input('Montant: Top-up amount', value=0.0)
+    marital = st.number_input('Frequence Recharge: Number of times the customer refilled', value=0.0)
+    education = st.number_input('Revenue: Monthly income of each client', value=0.0)
+    default = st.number_input('ARPU Segment: Income over 90 days / 3', value=0.0)
+    housing = st.number_input('Frequency: Number of times the customer refilled', value=0.0)
+    loan = st.number_input('Data Volume: Number of connections', value=0.0)
+    contact = st.number_input('On Net: Inter-expresso call', value=0.0)
+    month = st.number_input('Orange: Call to Orange', value=0.0)
+    day_of_week = st.number_input('Tigo: Call to Tigo', value=0.0)
+    duration = st.number_input('Zone1: Call to Zone1', value=0.0)
+    previous = st.number_input('Zone2: Call to Zone2', value=0.0)
+    poutcome = st.number_input('Zone2: Call to Zone2', value=0.0)
+    pdays = st.slider('Regularity: Number of times the client is active for 90 days', 1, 61, 30)
+    campaign = st.number_input('Frequency Top Pack: Number of times the client has activated the top pack packages', value=0.0)
 
     # Calculate values
     total_recharge = calculate_total_recharge(montant, frequence_rech)
