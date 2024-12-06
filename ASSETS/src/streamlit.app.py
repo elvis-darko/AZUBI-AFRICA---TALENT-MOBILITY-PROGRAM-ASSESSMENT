@@ -25,7 +25,7 @@ css_style = {
 
 
 # Define functions to calculate values
-def campaign_diff(campaign, previous):
+def calculate_campaign_diff(campaign, previous):
     return campaign - previous
 
 # Set up home page
@@ -113,24 +113,18 @@ def prediction_page():
     campaign = st.number_input('Frequency Top Pack: Number of times the client has activated the top pack packages', value=0.0)
 
     # Calculate values
-    total_recharge = calculate_total_recharge(montant, frequence_rech)
-    avg_revenue_montant = calculate_avg_revenue_montant(revenue, montant)
-    frequence_squared = calculate_frequence_squared(frequence)
-    on_net_reg_ratio = calculate_on_net_reg_ratio(on_net, regularity)
-
+    campaign_diff = calculate_campaign_diff(campaign, previous)
+    
     # Display calculated values
-    st.text_input("Total Recharge", total_recharge)
-    st.text_input("Average Revenue Montant", avg_revenue_montant)
-    st.text_input("Frequence Squared", frequence_squared)
-    st.text_input("On Net Reg Ratio", on_net_reg_ratio)
+    st.text_input("Campaign Difference", campaign_diff)
+    
 
     # Make prediction
     if st.button('Predict'):
-        input_features = np.array([[tenure, montant, frequence_rech, revenue, arpu_segment, 
-                                    frequence, data_volume, on_net, orange, tigo, 
-                                    zone1, zone2, regularity, freq_top_pack, 
-                                    total_recharge, avg_revenue_montant, 
-                                    frequence_squared, on_net_reg_ratio]])
+        input_features = np.array([[age, job, marital, education, default, 
+                                    housing, loan, contact, month, day_of_week, 
+                                    duration, previous, poutcome, pdays, campaign, 
+                                    campaign_diff, ]])
         
         prediction = tuned_gb_model.predict(input_features)
         prediction_probability = tuned_gb_model.predict_proba(input_features)[:, 1]  # Probability of churn
