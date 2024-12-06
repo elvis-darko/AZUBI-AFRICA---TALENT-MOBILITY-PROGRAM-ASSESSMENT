@@ -96,21 +96,21 @@ def prediction_page():
 
 
     # Input form
-    age = st.number_input('AGE: Age of client', 1, 12, 7)
-    job = st.number_input('Montant: Top-up amount', value=0.0)
-    marital = st.number_input('Frequence Recharge: Number of times the customer refilled', value=0.0)
-    education = st.number_input('Revenue: Monthly income of each client', value=0.0)
-    default = st.number_input('ARPU Segment: Income over 90 days / 3', value=0.0)
-    housing = st.number_input('Frequency: Number of times the customer refilled', value=0.0)
-    loan = st.number_input('Data Volume: Number of connections', value=0.0)
-    contact = st.number_input('On Net: Inter-expresso call', value=0.0)
-    month = st.number_input('Orange: Call to Orange', value=0.0)
-    day_of_week = st.number_input('Tigo: Call to Tigo', value=0.0)
-    duration = st.number_input('Zone1: Call to Zone1', value=0.0)
-    previous = st.number_input('Zone2: Call to Zone2', value=0.0)
-    poutcome = st.number_input('Zone2: Call to Zone2', value=0.0)
-    pdays = st.slider('Regularity: Number of times the client is active for 90 days', 1, 61, 30)
-    campaign = st.number_input('Frequency Top Pack: Number of times the client has activated the top pack packages', value=0.0)
+    age = st.number_input('Age: Age of client', 1, 12, 7)
+    job = st.text_input('Job: Type of Job', value=0.0)
+    marital = st.text_input('Marital: Marital status of client', value=0.0)
+    education = st.text_input('Education: Education level of client', value=0.0)
+    default = st.text_input('Credit Default: Has client defaulted on credit?', value=0.0)
+    housing = st.text_input('Housing: Does Client have a house loan?', value=0.0)
+    loan = st.text_input('Personal Loan: Does the client have a personal loan', value=0.0)
+    contact = st.text_input('Contact: Contact communication of client', value=0.0)
+    month = st.number_input('Month: Last contact month of the year', value=0.0)
+    day_of_week = st.number_input('Day of Week: Last contact day of the year', value=0.0)
+    duration = st.number_input('Duration: Last contact duration of the year, in seconds', value=0.0)
+    previous = st.number_input('Previous: Number of contacts performed before this campaign and for this client', value=0.0)
+    poutcome = st.number_input('Previous Outcome: Outcome of the previous marketing campaign', value=0.0)
+    pdays = st.slider('Pdays: Number of days that passed by after the client was last contacted from a previous campaign', 1, 61, 30)
+    campaign = st.number_input('Campaign: Number of contacts performed during this campaign and for this client', value=0.0)
 
     # Calculate values
     campaign_diff = calculate_campaign_diff(campaign, previous)
@@ -124,14 +124,14 @@ def prediction_page():
         input_features = np.array([[age, job, marital, education, default, 
                                     housing, loan, contact, month, day_of_week, 
                                     duration, previous, poutcome, pdays, campaign, 
-                                    campaign_diff, ]])
+                                    campaign_diff]])
         
         prediction = tuned_gb_model.predict(input_features)
         prediction_probability = tuned_gb_model.predict_proba(input_features)[:, 1]  # Probability of churn
 
         if prediction[0] == 0:
             st.image("https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/65532/happy-emoji-clipart-md.png", use_column_width=True)
-            st.write('Prediction: Not Churn')
+            st.write('Prediction: Subscribed for Term Deposit')
             
             # Display churn probability score
             st.write(f'Term Deposit Probability Score: {round(prediction_probability[0] * 100)}%')
@@ -142,10 +142,8 @@ def prediction_page():
             
             # Display feature importance as a bar chart
             feature_importance = tuned_gb_model.feature_importances_
-            feature_names = ["tenure", "montant", "frequence_rech", "revenue", "arpu_segment",
-                            "frequence", "data_volume", "on_net", "orange", "tigo",
-                            "zone1", "zone2", "regularity", "freq_top_pack", "total_recharge",
-                            "avg_revenue_montant", "frequence_squared", "on_net_reg_ratio"]
+            feature_names = [age, job, marital, education, default, housing, loan, contact, month, 
+                             day_of_week, duration, previous, poutcome, pdays, campaign, campaign_diff]
             
             # Create a bar chart
             plt.barh(feature_names, feature_importance)
