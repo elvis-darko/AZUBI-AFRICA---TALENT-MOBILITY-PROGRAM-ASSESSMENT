@@ -25,27 +25,18 @@ css_style = {
 
 
 # Define functions to calculate values
-def calculate_total_recharge(montant, frequence_rech):
-    return montant * frequence_rech
-
-def calculate_avg_revenue_montant(revenue, montant):
-    return (revenue + montant) / 2
-
-def calculate_frequence_squared(frequence):
-    return frequence ** 2
-
-def calculate_on_net_reg_ratio(on_net, regularity):
-    return on_net / regularity
+def campaign_diff(campaign, previous):
+    return campaign - previous
 
 # Set up home page
 def home_page():
-    st.title('EXPRESSO CUSTOMER CHURN PREDICTION APP')
-    exp_url = "https://github.com/elvis-darko/Team_Zurich_Capstone_Project/raw/main/Assets/images/expresso.png"
-    st.image(exp_url, caption='Team Zurich Churn Prediction App', use_column_width=True)
+    st.title('CLIENT TERM SUBSCRIPTION APP')
+    exp_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/blob/main/ASSETS/images/images.jpeg"
+    st.image(exp_url, caption='PEOPLE NATIONAL BANK TERM DEPOSIT PREDICTION App', use_column_width=True)
     st.write("""<h2>Welcome to the People's National Bank Client Term Dposit Probability prediction App!</h2>""", unsafe_allow_html=True)
     st.write("This App is for an African commercial bank, The People's National Bank. The bank provides all kinds of financial assistance to clients.")
     st.write("The objective of this project is to develop a machine learning model to predict the likelihood of each client subscribing to a term depoist given certain conditions.")
-    st.write("This will the bank to streamlining it's marketing campaigns to keep existing term deposit clients and also gan new subscribers.")
+    st.write("This will enable the bank in streamlining it's marketing campaigns to keep existing term deposit clients and also gan new subscribers.")
     st.write(f"""
     <p>The following method will help you to use the app:</p>
     <ul>
@@ -65,8 +56,8 @@ def prediction_page():
     st.title('CLIENT TERM SUBSCRIPTION PROBABILITY')
 
     # Add the image using st.image
-    image_url = "https://github.com/elvis-darko/Team_Zurich_Capstone_Project/raw/main/Assets/images/cust_churn.jpg"
-    st.image(image_url, caption='Team Zurich Churn Prediction App', use_column_width=True)
+    image_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/blob/main/ASSETS/images/images.jpeg"
+    st.image(image_url, caption='Term Deposit Prediction App', use_column_width=True)
 
     # Raw GitHub URL of your model
     model_url = "https://github.com/Preencez/Team_Zurich_Capstone_Project/raw/main/Assets/src/tuned_gb_model.joblib"
