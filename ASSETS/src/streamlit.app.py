@@ -121,9 +121,8 @@ def prediction_page():
 
     # Make prediction
     if st.button('Predict'):
-        input_features = np.array([[age, job, marital, education, default, 
-                                    housing, loan, contact, month, day_of_week, 
-                                    duration, previous, poutcome, pdays, campaign, 
+        input_features = np.array([[age, job, marital, education, default, housing, loan, contact, 
+                                    month, day_of_week, duration, previous, poutcome, pdays, campaign, 
                                     campaign_diff]])
         
         prediction = tuned_gb_model.predict(input_features)
