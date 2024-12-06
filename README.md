@@ -104,7 +104,7 @@ A streamlit app was added for further exploration of the model. The streamlit ap
 
 ## EVALUATION
 
-The model would predict the likelihood of a client subscribing to a term limit given certain parameters.
+The evaluation metric is the F1-score. The model would predict the likelihood of a client subscribing to a term limit given certain parameters. The model with the highest F-1 score will be the best performing model.
 
 The final work would look like this:
 
