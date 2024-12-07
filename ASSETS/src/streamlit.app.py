@@ -64,7 +64,7 @@ def prediction_page():
     global gb_model_tuned    
     
     # Raw GitHub URL of your model
-    model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/blob/main/ASSETS/dev/gb_model_tuned.joblib"
+    model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/src/gb_model_tuned.joblib"
 
     # Download the model file from the URL and save it locally
     response = requests.get(model_url)
