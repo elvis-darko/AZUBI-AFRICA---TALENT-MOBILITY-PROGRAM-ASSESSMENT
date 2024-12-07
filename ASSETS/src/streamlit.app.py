@@ -95,7 +95,7 @@ def prediction_page():
     day_of_week = st.text_input('Day of Week: Last contact day of the year')
     duration = st.number_input('Duration: Last contact duration of the year, in seconds')
     previous = st.number_input('Previous: Number of contacts performed before this campaign and for this client')
-    poutcome = st.number_input('Previous Outcome: Outcome of the previous marketing campaign')
+    poutcome = st.text_input('Previous Outcome: Outcome of the previous marketing campaign')
     pdays = st.number_input('Pdays: Number of days that passed by after the client was last contacted from a previous campaign')
     campaign = st.number_input('Campaign: Number of contacts performed during this campaign and for this client')
 
