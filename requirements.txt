@@ -8,7 +8,6 @@ streamlit
 scikit-learn
 matplotlib
 shap
-fastapi[all]
 uvicorn
 pydantic
 jinja2
