@@ -115,7 +115,7 @@ def prediction_page():
         prediction_probability = tuned_gb_model.predict_proba(input_features)[:, 1]  # Probability of churn
 
         if prediction[0] == 0:
-            st.image("https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/65532/happy-emoji-clipart-md.png", use_column_width=True)
+            st.image("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/blob/main/ASSETS/images/suscribe.png", use_column_width=True)
             st.write('Prediction: Client likely to subscribe to new term deposit')
             
             # Display churn probability score
@@ -149,8 +149,8 @@ def prediction_page():
             
         else:
             # Handle the case where the prediction is churn
-            churn_pic = "https://github.com/elvis-darko/Team_Zurich_Capstone_Project/raw/main/Assets/images/churn_pic.jpg"
-            st.image(churn_pic, use_column_width=True) 
+            unsuscribe_pic = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/unsuscribe.jpeg"
+            st.image(unsuscribe_pic, use_column_width=True) 
             st.write('Prediction: Customer is likely not to subscribe to new term deposit')
             
             # Display churn probability score
@@ -177,7 +177,7 @@ def developers_page():
  
 # Set up option menu (side bar)
 with st.sidebar:
-    cust_url = "https://github.com/elvis-darko/Team_Zurich_Capstone_Project/raw/main/Assets/images/expresso.jpg"
+    cust_url =  "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/images.jpeg"
     st.image(cust_url, use_column_width=True)
     selected = option_menu(
         menu_title=None,
