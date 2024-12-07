@@ -171,8 +171,14 @@ def prediction_page():
             st.write(f'Churn Probability Score: {round(prediction_probability[0] * 100, 2)}%')
             
             # Add a message to clients who churn
-            st.write("We're sorry to see you go. If you have any feedback or concerns, please don't hesitate to reach out to us. We value your input and are always looking to improve our services.")
-
+            # Display recommendations for customers who did not subscribe to new term deposit
+            st.write("Recommendations for Term Deposit by clients:")
+            st.write("1. The marketing team should .")
+            st.write("2. Explore our new product offerings for additional benefits")
+            st.write("3. Unlock personalized recommendations and tailored experiences as a loyalty program member. We'll cater  for your preferences and needs like never before.")
+            st.write("4. Get an exclusive sneak peek at upcoming features or products. You can even participate in beta testing and help shape our future offerings.")
+            st.write("5. Accumulate rewards points with every purchase, which you can redeem for exciting prizes, discounts, or even free products.")
+            
 
 def developers_page():
      st.title('THE APP DEVELOPERS')
