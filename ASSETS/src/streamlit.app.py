@@ -69,7 +69,7 @@ def prediction_page():
     st.image(image_url, caption='Term Deposit Prediction App', use_column_width=True)
 
     # Raw GitHub URL of your model
-    model_url = "https://github.com/Preencez/Team_Zurich_Capstone_Project/raw/main/Assets/src/tuned_gb_model.joblib"
+    model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/blob/main/ASSETS/dev/gb_model_tuned.joblib"
 
     # Download the model file from the URL and save it locally
     response = requests.get(model_url)
