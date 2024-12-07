@@ -60,7 +60,8 @@ def home_page():
    
 
 # Set up prediction page
-def prediction_page():    
+def prediction_page():
+    global gb_model_tuned    
     
     # Raw GitHub URL of your model
     model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/blob/main/ASSETS/dev/gb_model_tuned.joblib"
@@ -111,7 +112,6 @@ def prediction_page():
         input_features = np.array([[age, job, marital, education, default, housing, loan, contact, 
                                     month, day_of_week, duration, previous, poutcome, pdays, campaign, 
                                     campaign_diff]])
-        
         prediction = gb_model_tuned.predict(input_features)
         prediction_probability = gb_model_tuned.predict_proba(input_features)[:, 1]  # Probability of churn
 
