@@ -7,7 +7,7 @@ import requests
 from PIL import Image
 
 # Set style of page
-st.set_page_config(page_title="EXPRESSO CUSTOMER CHURN PREDICTION APP", page_icon="GH", initial_sidebar_state="expanded")
+st.set_page_config(page_title="PEOPLE  NATIONAL BANK TERM DEPOSIT PREDICTION APP", page_icon="GH", initial_sidebar_state="expanded")
 
 hide_streamlit_style = """
             <style>
@@ -32,7 +32,7 @@ def calculate_campaign_diff(campaign, previous):
 def home_page():
     st.title('CLIENT TERM SUBSCRIPTION APP')
     exp_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/blob/main/ASSETS/images/images.jpeg"
-    st.image(exp_url, caption='PEOPLE NATIONAL BANK TERM DEPOSIT PREDICTION App', use_column_width=True)
+    st.image(exp_url, caption='PEOPLE NATIONAL BANK TERM DEPOSIT PREDICTION APP', use_column_width=True)
     st.write("""<h2>Welcome to the People's National Bank Client Term Dposit Probability prediction App!</h2>""", unsafe_allow_html=True)
     st.write("This App is for an African commercial bank, The People's National Bank. The bank provides all kinds of financial assistance to clients.")
     st.write("The objective of this project is to develop a machine learning model to predict the likelihood of each client subscribing to a term depoist given certain conditions.")
@@ -76,7 +76,7 @@ def home_page():
 def prediction_page():
 
     # Title of the page
-    st.title('CLIENT TERM SUBSCRIPTION PROBABILITY')
+    st.title('CLIENT TERM SUBSCRIPTION PREDICTION')
 
     # Add the image using st.image
     image_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/blob/main/ASSETS/images/images.jpeg"
@@ -96,21 +96,21 @@ def prediction_page():
 
 
     # Input form
-    age = st.number_input('Age: Age of client', 1, 12, 7)
-    job = st.text_input('Job: Type of Job', value=0.0)
-    marital = st.text_input('Marital: Marital status of client', value=0.0)
-    education = st.text_input('Education: Education level of client', value=0.0)
-    default = st.text_input('Credit Default: Has client defaulted on credit?', value=0.0)
-    housing = st.text_input('Housing: Does Client have a house loan?', value=0.0)
-    loan = st.text_input('Personal Loan: Does the client have a personal loan', value=0.0)
-    contact = st.text_input('Contact: Contact communication of client', value=0.0)
-    month = st.number_input('Month: Last contact month of the year', value=0.0)
-    day_of_week = st.number_input('Day of Week: Last contact day of the year', value=0.0)
-    duration = st.number_input('Duration: Last contact duration of the year, in seconds', value=0.0)
-    previous = st.number_input('Previous: Number of contacts performed before this campaign and for this client', value=0.0)
-    poutcome = st.number_input('Previous Outcome: Outcome of the previous marketing campaign', value=0.0)
-    pdays = st.slider('Pdays: Number of days that passed by after the client was last contacted from a previous campaign', 1, 61, 30)
-    campaign = st.number_input('Campaign: Number of contacts performed during this campaign and for this client', value=0.0)
+    age = st.number_input('Age: Age of client')
+    job = st.text_input('Job: Type of Job')
+    marital = st.text_input('Marital: Marital status of client')
+    education = st.text_input('Education: Education level of client')
+    default = st.text_input('Credit Default: Has client defaulted on credit?')
+    housing = st.text_input('Housing: Does Client have a house loan?')
+    loan = st.text_input('Personal Loan: Does the client have a personal loan')
+    contact = st.text_input('Contact: Contact communication of client')
+    month = st.text_input('Month: Last contact month of the year')
+    day_of_week = st.text_input('Day of Week: Last contact day of the year')
+    duration = st.number_input('Duration: Last contact duration of the year, in seconds')
+    previous = st.number_input('Previous: Number of contacts performed before this campaign and for this client')
+    poutcome = st.number_input('Previous Outcome: Outcome of the previous marketing campaign')
+    pdays = st.number_input('Pdays: Number of days that passed by after the client was last contacted from a previous campaign')
+    campaign = st.number_input('Campaign: Number of contacts performed during this campaign and for this client')
 
     # Calculate values
     campaign_diff = calculate_campaign_diff(campaign, previous)
@@ -130,7 +130,7 @@ def prediction_page():
 
         if prediction[0] == 0:
             st.image("https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/65532/happy-emoji-clipart-md.png", use_column_width=True)
-            st.write('Prediction: Subscribed for Term Deposit')
+            st.write('Prediction: Client likely to subscribe to new term deposit')
             
             # Display churn probability score
             st.write(f'Term Deposit Probability Score: {round(prediction_probability[0] * 100)}%')
@@ -165,7 +165,7 @@ def prediction_page():
             # Handle the case where the prediction is churn
             churn_pic = "https://github.com/elvis-darko/Team_Zurich_Capstone_Project/raw/main/Assets/images/churn_pic.jpg"
             st.image(churn_pic, use_column_width=True) 
-            st.write('Prediction: Churn')
+            st.write('Prediction: Customer is likely not to subscribe to new term deposit')
             
             # Display churn probability score
             st.write(f'Churn Probability Score: {round(prediction_probability[0] * 100, 2)}%')
