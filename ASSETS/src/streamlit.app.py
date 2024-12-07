@@ -5,6 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import requests
 from PIL import Image
+import pandas as pd
 
 # Set style of page
 st.set_page_config(page_title="PEOPLE  NATIONAL BANK TERM DEPOSIT PREDICTION APP", page_icon="GH", initial_sidebar_state="expanded")
@@ -48,29 +49,14 @@ def home_page():
         <li>Feedback (no): Provide input for improvements.</li>
     </ul>
     """, unsafe_allow_html=True)
-    st.write(f"""
-    <p>The following are the features of clients:</p>
-    <ul>
-        <li>AGE : The Age of client (numeric)<li>
-        <li>JOB : Type of job (categorical: "administration","unknown","unemployed","management","housemaid","entrepreneur","student"blue-collar","self-employed","retired","technician","services")<li> 
-        <li>MARITAL : Marital status (categorical: "married","divorced","single"; note: "divorced" means divorced or widowed)<li>
-        <li>EDUCATION : Education level of client (categorical: "unknown","secondary","primary","tertiary")<li>
-        <li>DEFAULT: Does the client have a credit in default? (binary: "yes","no")<li>
-        <li>BALANCE: average yearly balance, in euros (numeric)<li>
-        <li>HOUSING: Has the client taken housing loan? (binary: "yes","no")<li>
-        <li>LOAN: Has the client taken personal loan? (binary: "yes","no")<li>
-        <li>CONTACT: Contact communication type (categorical: "unknown","telephone","cellular")<li> 
-        <li>DAY: Last contact day of the month (numeric)<li>
-        <li>MONTH: Last contact month of year (categorical: "jan", "feb", "mar", ..., "nov", "dec")<li>
-        <li>DURATION: Last contact duration, in seconds (numeric)<li>
-        <li>CAMPAIGN: Number of contacts performed during this campaign and for this client (numeric, includes last contact)<li>
-        <li>PDAYS: Number of days that passed by after the client was last contacted from a previous campaign (numeric, -1 means client was not previously contacted)<li>
-        <li>PREVIOUS: Number of contacts performed before this campaign and for this client (numeric)<li>
-        <li>POUTCOME: Outcome of the previous marketing campaign (categorical: "unknown","other","failure","success")<li>
-        <li>TERM_DEPOSIT : Has the client subscribed a term deposit? (binary: "yes","no")<li>
-        
-    </ul>
-    """, unsafe_allow_html=True)
+#     st.write('The following are the features of clients')
+    
+# table = pd.DataFrame([
+#     {"FEATURE": "Age", "DESCRIPTION": "Age of client", "DATA TYPE": "Numerical"},
+#     {"FEATURE": "Age", "DESCRIPTION": "Age of client", "DATA TYPE": "Numerical"}])
+    
+#st.table(table)    
+   
 
 # Set up prediction page
 def prediction_page():
