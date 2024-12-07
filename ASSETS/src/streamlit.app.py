@@ -65,18 +65,18 @@ def prediction_page():
     st.title('CLIENT TERM SUBSCRIPTION PREDICTION')
 
     # Add the image using st.image
-    image_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/blob/main/ASSETS/images/images.jpeg"
-    st.image(image_url, caption='Term Deposit Prediction App', use_column_width=True)
+    image_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/images.jpeg"
+    st.image(image_url, caption='Term Deposit Prediction App')
 
     # Raw GitHub URL of your model
-    model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/blob/main/ASSETS/dev/gb_model_tuned.joblib"
+    model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/dev/gb_model_tuned.joblib"
 
     # Download the model file from the URL and save it locally
     response = requests.get(model_url)
     if response.status_code == 200:
-        with open("tuned_gb_model.joblib", "wb") as f:
+        with open("gb_model_tuned.joblib", "wb") as f:
             f.write(response.content)
-        tuned_gb_model = joblib.load("tuned_gb_model.joblib")
+        gb_model_tuned = joblib.load("gb_model_tuned.joblib")
     else:
         st.error("Failed to load the model from GitHub.")
 
@@ -111,8 +111,8 @@ def prediction_page():
                                     month, day_of_week, duration, previous, poutcome, pdays, campaign, 
                                     campaign_diff]])
         
-        prediction = tuned_gb_model.predict(input_features)
-        prediction_probability = tuned_gb_model.predict_proba(input_features)[:, 1]  # Probability of churn
+        prediction = gb_model_tuned.predict(input_features)
+        prediction_probability = gb_model_tuned.predict_proba(input_features)[:, 1]  # Probability of churn
 
         if prediction[0] == 0:
             st.image("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/blob/main/ASSETS/images/suscribe.png", use_column_width=True)
@@ -126,7 +126,7 @@ def prediction_page():
             st.write(f'Accuracy Score: {accuracy:.2f}')
             
             # Display feature importance as a bar chart
-            feature_importance = tuned_gb_model.feature_importances_
+            feature_importance = gb_model_tuned.feature_importances_
             feature_names = [age, job, marital, education, default, housing, loan, contact, month, 
                              day_of_week, duration, previous, poutcome, pdays, campaign, campaign_diff]
             
