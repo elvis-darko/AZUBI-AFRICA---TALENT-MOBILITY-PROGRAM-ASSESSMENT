@@ -7,6 +7,8 @@ import requests
 from PIL import Image
 import pandas as pd
 
+
+
 # Set style of page
 st.set_page_config(page_title="PEOPLE  NATIONAL BANK TERM DEPOSIT PREDICTION APP", page_icon="GH", initial_sidebar_state="expanded")
 
@@ -24,7 +26,6 @@ css_style = {
     "nav-link-selected": {"background-color": "#FF4C1B"},
 }
 
-
 # Define functions to calculate values
 def calculate_campaign_diff(campaign, previous):
     return campaign - previous
@@ -34,7 +35,7 @@ def home_page():
     st.title('CLIENT TERM SUBSCRIPTION APP')
     exp_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/images.jpeg"
     st.image(exp_url, caption='PEOPLE NATIONAL BANK TERM DEPOSIT PREDICTION APP', use_container_width=True)
-    st.write("""<h2>Welcome to the People's National Bank Client Term Dposit Probability prediction App!</h2>""", unsafe_allow_html=True)
+    st.write("""<h2>Welcome to the People's National Bank Client Term Deposit Prediction App!</h2>""", unsafe_allow_html=True)
     st.write("This App is for an African commercial bank, The People's National Bank. The bank provides all kinds of financial assistance to clients.")
     st.write("The objective of this project is to develop a machine learning model to predict the likelihood of each client subscribing to a term depoist given certain conditions.")
     st.write("This will enable the bank in streamlining it's marketing campaigns to keep existing term deposit clients and also gan new subscribers.")
@@ -59,17 +60,10 @@ def home_page():
    
 
 # Set up prediction page
-def prediction_page():
-
-    # Title of the page
-    st.title('CLIENT TERM SUBSCRIPTION PREDICTION')
-
-    # Add the image using st.image
-    image_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/deposit.jpeg"
-    st.image(image_url, caption='Term Deposit Prediction App', use_container_width=True)
-
+def prediction_page():    
+    
     # Raw GitHub URL of your model
-    model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/dev/gb_model_tuned.joblib"
+    model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/blob/main/ASSETS/dev/gb_model_tuned.joblib"
 
     # Download the model file from the URL and save it locally
     response = requests.get(model_url)
@@ -80,6 +74,13 @@ def prediction_page():
     else:
         st.error("Failed to load the model from GitHub.")
 
+
+    # Title of the page
+    st.title('CLIENT TERM SUBSCRIPTION PREDICTION')
+
+    # Add the image using st.image
+    image_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/deposit.jpeg"
+    st.image(image_url, caption='Term Deposit Prediction App', use_container_width=True)
 
     # Input form
     age = st.number_input('Age: Age of client')
@@ -178,7 +179,7 @@ def developers_page():
 # Set up option menu (side bar)
 with st.sidebar:
     cust_url =  "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/images.jpeg"
-    st.image(cust_url, use_column_width=True)
+    st.image(cust_url, use_container_width=True)
     selected = option_menu(
         menu_title=None,
         options=["Home", "Prediction", "Developers"],
