@@ -33,7 +33,7 @@ def calculate_campaign_diff(campaign, previous):
 def home_page():
     st.title('CLIENT TERM SUBSCRIPTION APP')
     exp_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/blob/main/ASSETS/images/images.jpeg"
-    st.image(exp_url, caption='PEOPLE NATIONAL BANK TERM DEPOSIT PREDICTION APP', use_column_width=True)
+    st.image(exp_url, caption='PEOPLE NATIONAL BANK TERM DEPOSIT PREDICTION APP', use_container_width=True)
     st.write("""<h2>Welcome to the People's National Bank Client Term Dposit Probability prediction App!</h2>""", unsafe_allow_html=True)
     st.write("This App is for an African commercial bank, The People's National Bank. The bank provides all kinds of financial assistance to clients.")
     st.write("The objective of this project is to develop a machine learning model to predict the likelihood of each client subscribing to a term depoist given certain conditions.")
@@ -65,8 +65,8 @@ def prediction_page():
     st.title('CLIENT TERM SUBSCRIPTION PREDICTION')
 
     # Add the image using st.image
-    image_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/images.jpeg"
-    st.image(image_url, caption='Term Deposit Prediction App')
+    image_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/deposit.jpeg"
+    st.image(image_url, caption='Term Deposit Prediction App', use_container_width=True)
 
     # Raw GitHub URL of your model
     model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/dev/gb_model_tuned.joblib"
@@ -115,7 +115,7 @@ def prediction_page():
         prediction_probability = gb_model_tuned.predict_proba(input_features)[:, 1]  # Probability of churn
 
         if prediction[0] == 0:
-            st.image("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/blob/main/ASSETS/images/suscribe.png", use_column_width=True)
+            st.image("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/suscribe.png", use_container_width=True)
             st.write('Prediction: Client likely to subscribe to new term deposit')
             
             # Display churn probability score
@@ -150,7 +150,7 @@ def prediction_page():
         else:
             # Handle the case where the prediction is churn
             unsuscribe_pic = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/unsuscribe.jpeg"
-            st.image(unsuscribe_pic, use_column_width=True) 
+            st.image(unsuscribe_pic, use_container_width=True) 
             st.write('Prediction: Customer is likely not to subscribe to new term deposit')
             
             # Display churn probability score
@@ -169,7 +169,7 @@ def prediction_page():
 def developers_page():
      st.title('THE APP DEVELOPERS')
      dev_url = "https://github.com/elvis-darko/Team_Zurich_Capstone_Project/raw/main/Assets/images/developer.png"
-     st.image(dev_url, caption='Term Deposit Subscription App', use_column_width=True)
+     st.image(dev_url, caption='Term Deposit Subscription App', use_container_width=True)
      st.write(f"""
     <p>This term deposit subscription App was solely built by Elvis Darko for the People's National Bank</p>
     <p>Elvis Darko is a budding Azubi Africa trained Data Scientist who aspires to be a fully fledged Artificial Intelligence Engineer</p>
