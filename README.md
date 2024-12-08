@@ -106,12 +106,6 @@ A streamlit app was added for further exploration of the model. The streamlit ap
         
         Streamlit run streamlit.app.py
 
-  # SCREESHOTS OF DEPLOYED APP
-[Alt text](https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/image.png) 
-![Alt text](https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/1.jpg)
-![Alt text](https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/2.jpg)
-![Alt text](https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/3.jpg)
-
 
 ## EVALUATION
 
@@ -136,6 +130,11 @@ Here are some ressources you would read to have a good understanding of tools, p
 - [Create user interfaces for machine learning models](https://www.youtube.com/watch?v=RiCQzBluTxU)
 - [Getting started with Streamlit](https://docs.streamlit.io/library/get-started)
 
+  # SCREESHOTS OF DEPLOYED APP
+![Alt text](https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/image.png) 
+![Alt text](https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/2.jpg)
+![Alt text](https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/1.jpg)
+![Alt text](https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/3.jpg)
 
 ## CONTRIBUTORS
 | NAME  |   COUNTRY |   E-MAIL  |
