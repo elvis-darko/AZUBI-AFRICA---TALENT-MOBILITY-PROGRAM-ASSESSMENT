@@ -1,8 +1,13 @@
 # AZUBI AFRICA TALENT MOBILITY PROGRAM ASSESSMENT
 
-## ABOUT THE PROJECT
+## PROJECT DESCRIPTION
 As a member of the data analytics team, my role involves creating tools that use the bank's operational data to help the business achieve its goals and projections.</br>
 For this project, I have been tasked to predict whether a client will subscribe to a term deposit (indicated by the variable "y" as "yes" or "n" as "no"). My task involves analyzing the dataset to assess trends and inisghts. Also, I am tasked to build a predictive model that determines the likelihood of a client subscribing to a term deposit based on the features provided in the dataset.
+
+## SUMMARY
+| PROJET CODE      | NAME        |   DEPLOYED APP | DESCRIPTION|
+|-----------|-------------|------|------|
+|TMP_1         | CLIENT TERM DEPOSIT PREDICTION  | [STREAMLIT APP](https://elvisdarkotmp.streamlit.app/)| Data Scientist is taked to train and deploy a machine learning model that that predicts the likelihood of a client subscribing for the Bank's Term Deposit |
 
 Sample of my tasks are as follows;
 1. Conduct Exploratory Data Analysis (EDA)</br>
@@ -100,6 +105,12 @@ A streamlit app was added for further exploration of the model. The streamlit ap
 - Run the demo app (being at the root of the repository):
         
         Streamlit run streamlit.app.py
+
+  # SCREESHOTS OF DEPLOYED APP
+[Alt text](https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/image.png) 
+![Alt text](https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/1.jpg)
+![Alt text](https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/2.jpg)
+![Alt text](https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/3.jpg)
 
 
 ## EVALUATION
