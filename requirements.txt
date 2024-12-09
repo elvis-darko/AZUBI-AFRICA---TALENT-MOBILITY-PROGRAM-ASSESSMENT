@@ -15,4 +15,4 @@ python-multipart
 qrcode
 llvmlite
 seaborn
-category encoders
+category_encoders
