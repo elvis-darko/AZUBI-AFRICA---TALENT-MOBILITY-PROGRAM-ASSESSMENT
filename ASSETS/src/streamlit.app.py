@@ -64,14 +64,14 @@ def prediction_page():
     global gb_model_tuned    
     
     # Raw GitHub URL of your model
-    model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/src/gb_model_tuned.joblib"
+    model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/src/gb_model_tuned.pkl"
 
     # Download the model file from the URL and save it locally
     response = requests.get(model_url)
     if response.status_code == 200:
-        with open("gb_model_tuned.joblib", "wb") as f:
+        with open("gb_model_tuned.pkl", "wb") as f:
             f.write(response.content)
-        gb_model_tuned = joblib.load("gb_model_tuned.joblib")
+        gb_model_tuned = joblib.load("gb_model_tuned.pkl")
     else:
         st.error("Failed to load the model from GitHub.")
 
