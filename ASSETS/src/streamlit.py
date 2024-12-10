@@ -6,6 +6,8 @@ import matplotlib.pyplot as plt
 import requests
 from PIL import Image
 import pandas as pd
+import sklearn
+from sklearn.preprocessing import LabelEncoder
 
 
 
@@ -33,8 +35,8 @@ def calculate_campaign_diff(campaign, previous):
 # Set up home page
 def home_page():
     st.title('CLIENT TERM SUBSCRIPTION APP')
-    exp_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/images.jpeg"
-    st.image(exp_url, caption='PEOPLE NATIONAL BANK TERM DEPOSIT PREDICTION APP', use_container_width=True)
+    #exp_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/images.jpeg"
+    #st.image(exp_url, caption='PEOPLE NATIONAL BANK TERM DEPOSIT PREDICTION APP', use_container_width=True)
     st.write("""<h2>Welcome to the People's National Bank Client Term Deposit Prediction App!</h2>""", unsafe_allow_html=True)
     st.write("This App is for an African commercial bank, The People's National Bank. The bank provides all kinds of financial assistance to clients.")
     st.write("The objective of this project is to develop a machine learning model to predict the likelihood of each client subscribing to a term depoist given certain conditions.")
@@ -63,39 +65,64 @@ def home_page():
 def prediction_page():    
     
     # Raw GitHub URL of your model
-    model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/src/gb_model_tuned.joblib"
+    gb_model_tuned = joblib.load(r"C:\\Users\\ICUMS\\Documents\\GitHub\\AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT\\ASSETS\\src\\gb_model_tuned.joblib")
 
-    # Download the model file from the URL and save it locally
-    response = requests.get(model_url)
-    if response.status_code == 200:
-        with open("gb_model_tuned.joblib", "wb") as f:
-            f.write(response.content)
-        gb_model_tuned = joblib.load("gb_model_tuned.joblib")
-    else:
-        st.error("Failed to load the model from GitHub.")
+    # # Download the model file from the URL and save it locally
+    # response = requests.get(model_url)
+    # if response.status_code == 200:
+    #     with open("gb_model_tuned.joblib", "wb") as f:
+    #         f.write(response.content)
+    #     gb_model_tuned = joblib.load("gb_model_tuned.joblib")
+    # else:
+    #     st.error("Failed to load the model from GitHub.")
 
 
     # Title of the page
     st.title('CLIENT TERM SUBSCRIPTION PREDICTION')
 
     # Add the image using st.image
-    image_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/deposit.jpeg"
-    st.image(image_url, caption='Term Deposit Prediction App', use_container_width=True)
+    #image_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/deposit.jpeg"
+    #st.image(image_url, caption='Term Deposit Prediction App', use_container_width=True)
+
+    
+    # Create categorical features
+    job_type = ['housemaid', 'services', 'administration', 'blue-collar', 'technician',
+       'retired', 'management', 'unemployed', 'self-employed', 'unknown',
+       'entrepreneur', 'student']
+
+    marital_status = ['married', 'single', 'divorced', 'unknown']
+
+    education_level = ["lower basic", "high school", "mid basic", "upper basic", 'illiterate', 'unknown',
+            "professional course", "university degree"]
+
+    loan_default = ['no', 'unknown', 'yes']
+
+    housing_loan = ['no', 'yes', 'unknown']
+
+    personal_loan = ['no', 'yes', 'unknown']
+    
+    contact_form = ['telephone', 'cellular']
+
+    month_m = ["june", "july", "august", "october", "november", "december", "march", "may", "april", "september"]
+
+    day = ["monday", "tuesday", "wednesday", "thursday", "friday"]
+
+    outcome = ['nonexistent', 'failure', 'success']
 
     # Input form
     age = st.number_input('Age: Age of client')
-    job = st.text_input('Job: Type of Job')
-    marital = st.text_input('Marital: Marital status of client')
-    education = st.text_input('Education: Education level of client')
-    default = st.text_input('Credit Default: Has client defaulted on credit?')
-    housing = st.text_input('Housing: Does Client have a house loan?')
-    loan = st.text_input('Personal Loan: Does the client have a personal loan')
-    contact = st.text_input('Contact: Contact communication of client')
-    month = st.text_input('Month: Last contact month of the year')
-    day_of_week = st.text_input('Day of Week: Last contact day of the year')
+    job = st.selectbox('Job: Type of Job', job_type)
+    marital = st.selectbox('Marital: Marital status of client', marital_status)
+    education = st.selectbox('Education: Education level of client', education_level)
+    default = st.selectbox('Credit Default: Has client defaulted on credit?', loan_default)
+    housing = st.selectbox('Housing: Does Client have a house loan?', housing_loan)
+    loan = st.selectbox('Personal Loan: Does the client have a personal loan', personal_loan)
+    contact = st.selectbox('Contact: Contact communication of client', contact_form)
+    month = st.selectbox('Month: Last contact month of the year', month_m)
+    day_of_week = st.selectbox('Day of Week: Last contact day of the year', day)
     duration = st.number_input('Duration: Last contact duration of the year, in seconds')
     previous = st.number_input('Previous: Number of contacts performed before this campaign and for this client')
-    poutcome = st.text_input('Previous Outcome: Outcome of the previous marketing campaign')
+    poutcome = st.selectbox('Previous Outcome: Outcome of the previous marketing campaign', outcome)
     pdays = st.number_input('Pdays: Number of days that passed by after the client was last contacted from a previous campaign')
     campaign = st.number_input('Campaign: Number of contacts performed during this campaign and for this client')
 
@@ -103,20 +130,50 @@ def prediction_page():
     campaign_diff = calculate_campaign_diff(campaign, previous)
     
     # Display calculated values
-    st.text_input("Campaign Difference", campaign_diff)
+    st.number_input("Campaign Difference", campaign_diff)
+    
+    # create dataframe with input features
+    features = {
+        "age" : [age],
+        "job" : [job], 
+        "marital" : [marital], 
+        "education" : [education], 
+        "default" : [default], 
+        "housing" : [housing], 
+        "loan" : [loan], 
+        "contact" : [contact], 
+        "month" : [month], 
+        "day_of_week" : [day_of_week], 
+        "duration" : [duration], 
+        "campaign" : [campaign], 
+        "pdays" : [pdays],
+        "previous" : [previous], 
+        "poutcome" : [previous],  
+        "campaign_diff" : [campaign_diff]
+    }
+
+
+    input_features = pd.DataFrame(features)
+
+    st.dataframe(input_features)
+
+    # Encode categorical featuresss
+    encoder = LabelEncoder()
+    encoder.fit(input_features[["job", "marital",  "education", "default", "housing", "loan", "contact", "month",  "day_of_week", "poutcome"]])
+
     
 
-    # Make prediction
+    # Make prediction, 
     if st.button('Predict'):
-        input_features = np.array([[age, job, marital, education, default, housing, loan, contact, 
-                                    month, day_of_week, duration, previous, poutcome, pdays, campaign, 
-                                    campaign_diff]])
+        # input_features = np.array([[age, job, marital, education, default, housing, loan, contact, 
+        #                             month, day_of_week, duration, previous, poutcome, pdays, campaign, 
+        #                             campaign_diff]])
         prediction = gb_model_tuned.predict(input_features)
-        prediction_probability = gb_model_tuned.predict_proba(input_features)[:, 1]  # Probability of churn
+        #prediction_probability = gb_model_tuned.predict_proba(input_features)[:, 1]  # Probability of churn
 
         if prediction[0] == 0:
-            st.image("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/suscribe.png", use_container_width=True)
-            st.write('Prediction: Client likely to subscribe to new term deposit')
+            #st.image("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/suscribe.png", use_container_width=True)
+            st.write('Prediction: Client likely not to subscribe to new term deposit')
             
             # Display churn probability score
             st.write(f'Term Deposit Probability Score: {round(prediction_probability[0] * 100)}%')
@@ -126,18 +183,18 @@ def prediction_page():
             st.write(f'Accuracy Score: {accuracy:.2f}')
             
             # Display feature importance as a bar chart
-            feature_importance = gb_model_tuned.feature_importances_
-            feature_names = [age, job, marital, education, default, housing, loan, contact, month, 
-                             day_of_week, duration, previous, poutcome, pdays, campaign, campaign_diff]
+            # feature_importance = gb_model_tuned.feature_importances_
+            # feature_names = [age, job, marital, education, default, housing, loan, contact, month, 
+            #                  day_of_week, duration, previous, poutcome, pdays, campaign, campaign_diff]
             
-            # Create a bar chart
-            plt.barh(feature_names, feature_importance)
-            plt.xlabel('Feature Importance')
-            plt.ylabel('Features')
-            plt.title('Feature Importance Scores')
+            # # Create a bar chart
+            # plt.barh(feature_names, feature_importance)
+            # plt.xlabel('Feature Importance')
+            # plt.ylabel('Features')
+            # plt.title('Feature Importance Scores')
             
             # Display the chart using Streamlit
-            st.pyplot(plt)
+            #st.pyplot(plt)
             
             # Display recommendations for customers who did not subscribe to new term deposit
             st.write("Recommendations for Term Deposit by clients:")
@@ -149,8 +206,8 @@ def prediction_page():
             
         else:
             # Handle the case where the prediction is churn
-            unsuscribe_pic = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/unsuscribe.jpeg"
-            st.image(unsuscribe_pic, use_container_width=True) 
+            #unsuscribe_pic = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/unsuscribe.jpeg"
+            #st.image(unsuscribe_pic, use_container_width=True) 
             st.write('Prediction: Customer is likely not to subscribe to new term deposit')
             
             # Display churn probability score
@@ -168,8 +225,8 @@ def prediction_page():
 
 def developers_page():
      st.title('THE APP DEVELOPER')
-     dev_url = "https://github.com/elvis-darko/Team_Zurich_Capstone_Project/raw/main/Assets/images/developer.png"
-     st.image(dev_url, caption='Term Deposit Subscription App', use_container_width=True)
+     #dev_url = "https://github.com/elvis-darko/Team_Zurich_Capstone_Project/raw/main/Assets/images/developer.png"
+     #st.image(dev_url, caption='Term Deposit Subscription App', use_container_width=True)
      st.write(f"""
     <p>This term deposit subscription App was solely built by Elvis Darko for the People's National Bank</p>
     <p>Elvis Darko is a budding Azubi Africa trained Data Scientist who aspires to be a fully fledged Artificial Intelligence Engineer</p>
@@ -177,8 +234,8 @@ def developers_page():
  
 # Set up option menu (side bar)
 with st.sidebar:
-    cust_url =  "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/images.jpeg"
-    st.image(cust_url, use_container_width=True)
+    #cust_url =  "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/images.jpeg"
+    #st.image(cust_url, use_container_width=True)
     selected = option_menu(
         menu_title=None,
         options=["Home", "Prediction", "Developers"],
@@ -187,11 +244,11 @@ with st.sidebar:
    )
     
 
-if selected == "HOME":
+if selected == "Home":
     home_page()
 
-elif selected == "PREDICTION":
+elif selected == "Prediction":
     prediction_page()
 
-elif selected == "DEVELOPER":
+elif selected == "Developer":
     developers_page()
