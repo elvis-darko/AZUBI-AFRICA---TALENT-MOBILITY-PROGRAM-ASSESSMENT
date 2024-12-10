@@ -60,8 +60,7 @@ def home_page():
    
 
 # Set up prediction page
-def prediction_page():
-    global gb_model_tuned    
+def prediction_page():    
     
     # Raw GitHub URL of your model
     model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/src/gb_model_tuned.joblib"
