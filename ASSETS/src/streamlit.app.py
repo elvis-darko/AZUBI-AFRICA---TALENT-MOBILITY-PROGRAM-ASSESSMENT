@@ -52,13 +52,7 @@ def home_page():
         <li>Feedback (no): Provide input for improvements.</li>
     </ul>
     """, unsafe_allow_html=True)
-#     st.write('The following are the features of clients')
-    
-# table = pd.DataFrame([
-#     {"FEATURE": "Age", "DESCRIPTION": "Age of client", "DATA TYPE": "Numerical"},
-#     {"FEATURE": "Age", "DESCRIPTION": "Age of client", "DATA TYPE": "Numerical"}])
-    
-#st.table(table)    
+     
    
 
 # Set up prediction page
@@ -97,7 +91,6 @@ def prediction_page():
 
     # Make prediction
     if st.button('Predict'):
-
         features = {
             "age" : age,
             "job" : job, 
@@ -114,9 +107,11 @@ def prediction_page():
             "pdays" : pdays,
             "previous" : previous, 
             "poutcome" : previous,  
-            "campaign_diff" : campaign_diff}
+            "campaign_diff" : campaign_diff
+        }
+       
         
-        #st.dataframe([features])
+        st.dataframe([features])
         #mlit input_features = np.array([[age, job, marital, education, default, housing, loan, contact, month, day_of_week, duration, previous, poutcome, pdays, campaign, campaign_diff]])
         input_features = pd.DataFrame([features])
 
