@@ -8,6 +8,8 @@ from PIL import Image
 import pandas as pd
 import sklearn
 from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import StandardScaler
+
 
 
 
@@ -65,7 +67,7 @@ def home_page():
 def prediction_page():    
     
     # Raw GitHub URL of your model
-    gb_model_tuned = joblib.load(r"C:\\Users\\ICUMS\\Documents\\GitHub\\AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT\\ASSETS\\src\\gb_model_tuned.joblib")
+    #gb_model_tuned = joblib.load(r"C:\\Users\\ICUMS\\Documents\\GitHub\\AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT\\ASSETS\\src\\gb_model_tuned.joblib")
 
     # # Download the model file from the URL and save it locally
     # response = requests.get(model_url)
@@ -133,34 +135,31 @@ def prediction_page():
     st.number_input("Campaign Difference", campaign_diff)
     
     # create dataframe with input features
-    features = {
-        "age" : [age],
-        "job" : [job], 
-        "marital" : [marital], 
-        "education" : [education], 
-        "default" : [default], 
-        "housing" : [housing], 
-        "loan" : [loan], 
-        "contact" : [contact], 
-        "month" : [month], 
-        "day_of_week" : [day_of_week], 
-        "duration" : [duration], 
-        "campaign" : [campaign], 
-        "pdays" : [pdays],
-        "previous" : [previous], 
-        "poutcome" : [previous],  
-        "campaign_diff" : [campaign_diff]
-    }
+    # features = {
+    #     "age" : [age],
+    #     "job" : [job], 
+    #     "marital" : [marital], 
+    #     "education" : [education], 
+    #     "default" : [default], 
+    #     "housing" : [housing], 
+    #     "loan" : [loan], 
+    #     "contact" : [contact], 
+    #     "month" : [month], 
+    #     "day_of_week" : [day_of_week], 
+    #     "duration" : [duration], 
+    #     "campaign" : [campaign], 
+    #     "pdays" : [pdays],
+    #     "previous" : [previous], 
+    #     "poutcome" : [previous],  
+    #     "campaign_diff" : [campaign_diff]
+    # }
 
 
-    input_features = pd.DataFrame(features)
+    # input_features = pd.DataFrame([features])
 
-    st.dataframe(input_features)
+    # st.dataframe(input_features)
 
     # Encode categorical featuresss
-    encoder = LabelEncoder()
-    encoder.fit(input_features[["job", "marital",  "education", "default", "housing", "loan", "contact", "month",  "day_of_week", "poutcome"]])
-
     
 
     # Make prediction, 
@@ -168,24 +167,63 @@ def prediction_page():
         # input_features = np.array([[age, job, marital, education, default, housing, loan, contact, 
         #                             month, day_of_week, duration, previous, poutcome, pdays, campaign, 
         #                             campaign_diff]])
-        prediction = gb_model_tuned.predict(input_features)
+         # create dataframe with input features
+        features = {
+            "age" : age,
+            "job" : job, 
+            "marital" : marital, 
+            "education" : education, 
+            "default" : default, 
+            "housing" : housing, 
+            "loan" : loan, 
+            "contact" : contact, 
+            "month" : month, 
+            "day_of_week" : day_of_week, 
+            "duration" : duration, 
+            "campaign" : campaign, 
+            "pdays" : pdays,
+            "previous" : previous, 
+            "poutcome" : previous,  
+            "campaign_diff" : campaign_diff
+        }
+        
+        st.dataframe([features])
+        #mlit input_features = np.array([[age, job, marital, education, default, housing, loan, contact, month, day_of_week, duration, previous, poutcome, pdays, campaign, campaign_diff]])
+        input_features = pd.DataFrame([features])
+
+
+        #input_features["campaign_diff"] = input_features["campaign"] - input_features["previous"]
+        input_features = input_features.astype(str)
+        input_features = input_features.values.reshape(-1, 1)
+
+        #input_features = pd.DataFrame([features])
+        encoder = LabelEncoder()
+        #encoder.transformstre(input_features[["job", "marital",  "education", "default", "housing", "loan", "contact", "month",  "day_of_week", "poutcome"]])
+        input_features = encoder.fit_transform(input_features)
+        
+
+        #st.dataframe([input_features])
+        gb_model_tuned = joblib.load(r"C:\\Users\\ICUMS\\Documents\\GitHub\\AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT\\ASSETS\\src\\gb_model_tuned.joblib")
+
+        prediction = gb_model_tuned.predict([input_features])
         #prediction_probability = gb_model_tuned.predict_proba(input_features)[:, 1]  # Probability of churn
 
-        if prediction[0] == 0:
+        if prediction[0] == "yes":
             #st.image("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/suscribe.png", use_container_width=True)
-            st.write('Prediction: Client likely not to subscribe to new term deposit')
+            st.write('Prediction: Client is likely to subscribe to new term deposit')
             
             # Display churn probability score
-            st.write(f'Term Deposit Probability Score: {round(prediction_probability[0] * 100)}%')
+            # prediction_probability = gb_model_tuned.predict_proba(input_features)[:, 1] 
+            # st.write(f'Term Deposit Probability Score: {round(prediction_probability[0] * 100)}%')
             
             # Display accuracy score
             accuracy = 0.80  # Replace with your actual accuracy score
             st.write(f'Accuracy Score: {accuracy:.2f}')
             
-            # Display feature importance as a bar chart
+            # # Display feature importance as a bar chart
             # feature_importance = gb_model_tuned.feature_importances_
             # feature_names = [age, job, marital, education, default, housing, loan, contact, month, 
-            #                  day_of_week, duration, previous, poutcome, pdays, campaign, campaign_diff]
+            #                   day_of_week, duration, previous, poutcome, pdays, campaign, campaign_diff]
             
             # # Create a bar chart
             # plt.barh(feature_names, feature_importance)
@@ -194,7 +232,7 @@ def prediction_page():
             # plt.title('Feature Importance Scores')
             
             # Display the chart using Streamlit
-            #st.pyplot(plt)
+            st.pyplot(plt)
             
             # Display recommendations for customers who did not subscribe to new term deposit
             st.write("Recommendations for Term Deposit by clients:")
@@ -209,9 +247,12 @@ def prediction_page():
             #unsuscribe_pic = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/unsuscribe.jpeg"
             #st.image(unsuscribe_pic, use_container_width=True) 
             st.write('Prediction: Customer is likely not to subscribe to new term deposit')
+            # Display accuracy score
+            accuracy = 0.80  # Replace with your actual accuracy score
+            st.write(f'Accuracy Score: {accuracy:.2f}')
             
             # Display churn probability score
-            st.write(f'Churn Probability Score: {round(prediction_probability[0] * 100, 2)}%')
+            #st.write(f'Churn Probability Score: {round(prediction_probability[0] * 100, 2)}%')
             
             # Add a message to clients who churn
             # Display recommendations for customers who did not subscribe to new term deposit
