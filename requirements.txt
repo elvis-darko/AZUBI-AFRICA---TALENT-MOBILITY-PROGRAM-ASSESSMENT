@@ -16,3 +16,4 @@ qrcode
 llvmlite
 seaborn
 category_encoders
+numba

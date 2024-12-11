@@ -6,6 +6,8 @@ import matplotlib.pyplot as plt
 import requests
 from PIL import Image
 import pandas as pd
+import sklearn
+from sklearn.preprocessing import LabelEncoder
 
 
 
@@ -95,6 +97,7 @@ def prediction_page():
 
     # Make prediction
     if st.button('Predict'):
+
         features = {
             "age" : age,
             "job" : job, 
@@ -111,10 +114,9 @@ def prediction_page():
             "pdays" : pdays,
             "previous" : previous, 
             "poutcome" : previous,  
-            "campaign_diff" : campaign_diff
-        }
+            "campaign_diff" : campaign_diff}
         
-        st.dataframe([features])
+        #st.dataframe([features])
         #mlit input_features = np.array([[age, job, marital, education, default, housing, loan, contact, month, day_of_week, duration, previous, poutcome, pdays, campaign, campaign_diff]])
         input_features = pd.DataFrame([features])
 
