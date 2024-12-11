@@ -114,12 +114,12 @@ The evaluation metric is the F1-score. The model would predict the likelihood of
 The final work would look like this:
 
             client 1d                                   TERM DEPOSIT
-            00001                                            0
-            000055                                           1
-            000081                                           1
+            00001                                            no
+            000055                                           yes
+            000081                                           no
 
-- `0 Stands for NO, meaning the client is not likely to suscribe to a term limit`
-- `1 Stands for YES, meaning the client is likely to suscribe to a term limit`
+- `no Stands for NO, meaning the client is not likely to suscribe to a term limit`
+- `yes Stands for YES, meaning the client is likely to suscribe to a term limit`
 
 
 
