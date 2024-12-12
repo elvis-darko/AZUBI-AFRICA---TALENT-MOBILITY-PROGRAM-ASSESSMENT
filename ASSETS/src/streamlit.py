@@ -63,16 +63,17 @@ def prediction_page():
     
     # Raw GitHub URL of your model
     #gb_model_tund = joblib.load(r"C:\\Users\\ICUMS\\Documents\\GitHub\\AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT\\ASSETS\\src\\gb_model_tuned.joblib")
+    
+    # Get the raw URL of your model from GitHub
+    
+    model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/src/gb_model_tuned.joblib"
 
-    gb_model_tuned = joblib.load("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/src/gb_model_tuned.joblib")
-    # Download the model file from the URL and save it locally
-    # response = requests.get(model_url)
-    # if response.status_code == 200:
-    #     with open("gb_model_tuned.joblib", "wb") as f:
-    #         f.write(response.content)
-    #     gb_model_tuned = joblib.load("gb_model_tuned.joblib")
-    # else:
-    #     st.error("Failed to load the model from GitHub.")
+    response = requests.get(model_url)
+    with open("gb_model_tuned.joblib", "wb") as f:
+        f.write(response.content)
+        
+    model = joblib.load(open("gb_model_tuned.joblib", "rb"))
+    
 
 
     # Title of the page
@@ -170,7 +171,7 @@ def prediction_page():
         #st.dataframe([input_features])
         #gb_model_tuned = joblib.load(r"C:\\Users\\ICUMS\\Documents\\GitHub\\AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT\\ASSETS\\src\\gb_model_tuned.joblib")
 
-        prediction = gb_model_tuned.predict([input_features])
+        prediction = model.predict([input_features])
         #prediction_probability = gb_model_tuned.predict_proba(input_features)[:, 1]  # Probability of churn
 
         if prediction[0] == "yes":
