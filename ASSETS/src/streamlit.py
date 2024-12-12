@@ -65,13 +65,13 @@ def prediction_page():
     
     # Get the raw URL of your model from GitHub
     
-    model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/dev/model_tuned.pkl"
+    model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/dev/gb_model_tuned.pkl"
 
     response = requests.get(model_url)
-    with open("model_tuned.pkl", "wb") as f:
+    with open("gb_model_tuned.pkl", "wb") as f:
         f.write(response.content)
         
-    model = pickle.load(open("model_tuned.pkl", "rb"))
+    model = pickle.load(open("gb_model_tuned.pkl", "rb"))
     
 
 
