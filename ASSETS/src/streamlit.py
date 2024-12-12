@@ -157,7 +157,7 @@ def prediction_page():
 
 
         #input_features["campaign_diff"] = input_features["campaign"] - input_features["previous"]
-        #input_features = input_features.astype(str)
+        input_features = input_features.astype(str)
         input_features = input_features.values.reshape(-1, 1)
 
         #input_features = pd.DataFrame([features])
