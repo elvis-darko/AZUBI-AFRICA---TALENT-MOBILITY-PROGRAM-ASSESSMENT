@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import requests
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
+from joblib import load
 
 
 # Set style of page
@@ -63,7 +64,7 @@ def prediction_page():
     # Raw GitHub URL of your model
     #gb_model_tund = joblib.load(r"C:\\Users\\ICUMS\\Documents\\GitHub\\AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT\\ASSETS\\src\\gb_model_tuned.joblib")
 
-    gb_model_tuned = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/src/gb_model_tuned.joblib"
+    gb_model_tuned = joblib.load("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/src/gb_model_tuned.joblib")
     # Download the model file from the URL and save it locally
     # response = requests.get(model_url)
     # if response.status_code == 200:
