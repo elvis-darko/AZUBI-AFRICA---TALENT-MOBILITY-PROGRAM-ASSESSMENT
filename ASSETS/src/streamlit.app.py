@@ -65,20 +65,44 @@ def prediction_page():
     image_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/deposit.jpeg"
     st.image(image_url, caption='Term Deposit Prediction App', use_container_width=True)
 
+     # Create categorical features
+    job_type = ['housemaid', 'services', 'administration', 'blue-collar', 'technician',
+       'retired', 'management', 'unemployed', 'self-employed', 'unknown',
+       'entrepreneur', 'student']
+
+    marital_status = ['married', 'single', 'divorced', 'unknown']
+
+    education_level = ["lower basic", "high school", "mid basic", "upper basic", 'illiterate', 'unknown',
+            "professional course", "university degree"]
+
+    loan_default = ['no', 'unknown', 'yes']
+
+    housing_loan = ['no', 'yes', 'unknown']
+
+    personal_loan = ['no', 'yes', 'unknown']
+    
+    contact_form = ['telephone', 'cellular']
+
+    month_m = ["june", "july", "august", "october", "november", "december", "march", "may", "april", "september"]
+
+    day = ["monday", "tuesday", "wednesday", "thursday", "friday"]
+
+    outcome = ["nonexistent", "failure", "success"]
+
     # Input form
     age = st.number_input('Age: Age of client')
-    job = st.text_input('Job: Type of Job')
-    marital = st.text_input('Marital: Marital status of client')
-    education = st.text_input('Education: Education level of client')
-    default = st.text_input('Credit Default: Has client defaulted on credit?')
-    housing = st.text_input('Housing: Does Client have a house loan?')
-    loan = st.text_input('Personal Loan: Does the client have a personal loan')
-    contact = st.text_input('Contact: Contact communication of client')
-    month = st.text_input('Month: Last contact month of the year')
-    day_of_week = st.text_input('Day of Week: Last contact day of the year')
+    job = st.selectbox('Job: Type of Job', job_type)
+    marital = st.selectbox('Marital: Marital status of client', marital_status)
+    education = st.selectbox('Education: Education level of client', education_level)
+    default = st.selectbox('Credit Default: Has client defaulted on credit?', loan_default)
+    housing = st.selectbox('Housing: Does Client have a house loan?', housing_loan)
+    loan = st.selectbox('Personal Loan: Does the client have a personal loan', personal_loan)
+    contact = st.selectbox('Contact: Contact communication of client', contact_form)
+    month = st.selectbox('Month: Last contact month of the year', month_m)
+    day_of_week = st.selectbox('Day of Week: Last contact day of the year', day)
     duration = st.number_input('Duration: Last contact duration of the year, in seconds')
     previous = st.number_input('Previous: Number of contacts performed before this campaign and for this client')
-    poutcome = st.text_input('Previous Outcome: Outcome of the previous marketing campaign')
+    poutcome = st.selectbox('Previous Outcome: Outcome of the previous marketing campaign', outcome)
     pdays = st.number_input('Pdays: Number of days that passed by after the client was last contacted from a previous campaign')
     campaign = st.number_input('Campaign: Number of contacts performed during this campaign and for this client')
 
@@ -106,9 +130,9 @@ def prediction_page():
             "campaign" : campaign, 
             "pdays" : pdays,
             "previous" : previous, 
-            "poutcome" : previous,  
+            "poutcome" : poutcome,  
             "campaign_diff" : campaign_diff
-        }
+            }
        
         
         st.dataframe([features])
@@ -116,7 +140,7 @@ def prediction_page():
         input_features = pd.DataFrame([features])
 
 
-        #input_features["campaign_diff"] = input_features["campaign"] - input_features["previous"]
+        input_features["campaign_diff"] = input_features["campaign"] - input_features["previous"]
         input_features = input_features.astype(str)
         input_features = input_features.values.reshape(-1, 1)
 
@@ -160,7 +184,7 @@ def prediction_page():
             st.write('Prediction: Customer is likely not to subscribe to new term deposit')
             
             # Display churn probability score
-            st.write(f'Churn Probability Score: {round(prediction_probability[0] * 100, 2)}%')
+            #st.write(f'Churn Probability Score: {round(prediction_probability[0] * 100, 2)}%')
             
             # Add a message to clients who churn
             # Display recommendations for customers who did not subscribe to new term deposit
