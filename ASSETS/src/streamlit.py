@@ -67,8 +67,9 @@ def home_page():
 def prediction_page():    
     
     # Raw GitHub URL of your model
-    #gb_model_tuned = joblib.load(r"C:\\Users\\ICUMS\\Documents\\GitHub\\AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT\\ASSETS\\src\\gb_model_tuned.joblib")
+    #gb_model_tund = joblib.load(r"C:\\Users\\ICUMS\\Documents\\GitHub\\AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT\\ASSETS\\src\\gb_model_tuned.joblib")
 
+    model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/src/gb_model_tuned.joblib"
     # Download the model file from the URL and save it locally
     response = requests.get(model_url)
     if response.status_code == 200:
