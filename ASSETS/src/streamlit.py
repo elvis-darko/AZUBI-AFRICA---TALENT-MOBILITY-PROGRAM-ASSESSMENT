@@ -71,7 +71,7 @@ def prediction_page():
     with open("model_tuned.pkl", "wb") as f:
         f.write(response.content)
         
-    model = pickle.load(open("model_tuned.joblib", "rb"))
+    model = pickle.load(open("model_tuned.pkl", "rb"))
     
 
 
