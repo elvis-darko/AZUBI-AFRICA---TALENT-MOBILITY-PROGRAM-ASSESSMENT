@@ -1,11 +1,10 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
-import joblib
 import matplotlib.pyplot as plt
 import requests
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
-from joblib import load
+import pickle
 
 
 # Set style of page
@@ -66,13 +65,13 @@ def prediction_page():
     
     # Get the raw URL of your model from GitHub
     
-    model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/src/gb_model_tuned.joblib"
+    model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/src/gb_model_tuned.pkl"
 
     response = requests.get(model_url)
-    with open("gb_model_tuned.joblib", "wb") as f:
+    with open("gb_model_tuned.pkl", "wb") as f:
         f.write(response.content)
         
-    model = joblib.load(open("gb_model_tuned.joblib", "rb"))
+    model = pickle.load(open("gb_model_tuned.joblib", "rb"))
     
 
 
