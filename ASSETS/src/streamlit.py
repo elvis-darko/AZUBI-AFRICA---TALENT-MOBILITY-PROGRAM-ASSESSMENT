@@ -1,10 +1,8 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 import joblib
-#import numpy as np
 import matplotlib.pyplot as plt
 import requests
-#from PIL import Image
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 
