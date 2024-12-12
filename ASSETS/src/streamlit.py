@@ -1,14 +1,12 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 import joblib
-import numpy as np
+#import numpy as np
 import matplotlib.pyplot as plt
 import requests
-from PIL import Image
+#from PIL import Image
 import pandas as pd
-import sklearn
 from sklearn.preprocessing import LabelEncoder
-
 
 
 # Set style of page
