@@ -170,7 +170,7 @@ def prediction_page():
         #st.dataframe([input_features])
         #gb_model_tuned = joblib.load(r"C:\\Users\\ICUMS\\Documents\\GitHub\\AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT\\ASSETS\\src\\gb_model_tuned.joblib")
 
-        prediction = model.predict([input_features])
+        prediction = model.predict(input_features)
         #prediction_probability = gb_model_tuned.predict_proba(input_features)[:, 1]  # Probability of churn
 
         if prediction[0] == "yes":
