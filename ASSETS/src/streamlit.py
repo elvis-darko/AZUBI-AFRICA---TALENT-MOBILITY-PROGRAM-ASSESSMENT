@@ -1,13 +1,14 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 import matplotlib.pyplot as plt
-import requests
+# import requests
+import numpy 
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 import pickle
 import urllib.request
 
-
+--hiddenimport=numpy.distutils
 # Set style of page
 st.set_page_config(page_title="PEOPLE  NATIONAL BANK TERM DEPOSIT PREDICTION APP", page_icon="GH", initial_sidebar_state="expanded")
 
