@@ -7,6 +7,7 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 import pickle
 import urllib.request
+import numpy.distutils # type: ignore
 
 # Set style of page
 st.set_page_config(page_title="PEOPLE  NATIONAL BANK TERM DEPOSIT PREDICTION APP", page_icon="GH", initial_sidebar_state="expanded")

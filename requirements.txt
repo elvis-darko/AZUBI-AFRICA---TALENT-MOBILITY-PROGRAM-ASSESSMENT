@@ -17,3 +17,5 @@ llvmlite
 seaborn
 category_encoders
 numba
+setuptools
+t
