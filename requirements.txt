@@ -1,7 +1,7 @@
 streamlit-option-menu
 stqdm
 joblib
-numpy
+numpy == 1.20.3
 pandas == 1.5.2
 shap
 streamlit
