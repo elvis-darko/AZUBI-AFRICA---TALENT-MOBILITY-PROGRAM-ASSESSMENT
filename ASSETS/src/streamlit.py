@@ -73,7 +73,8 @@ def prediction_page():
     #     f.write(response.content)
         
     # model = pickle.load(open("gb_model_tuned.joblib", "rb"))
-    @st.cache
+    st.cache_data 
+    st.cache_resource
 
     def load_model():
 
