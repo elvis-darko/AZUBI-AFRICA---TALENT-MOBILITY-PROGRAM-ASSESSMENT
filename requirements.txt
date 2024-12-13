@@ -2,7 +2,7 @@ streamlit-option-menu
 stqdm
 joblib
 numpy==2.0.0
-pandas==1.5.2
+pandas==1.6.0
 shap
 streamlit
 scikit-learn
