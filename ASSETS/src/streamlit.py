@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 #import numpy
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
-import pickle
+import pickle, joblib
 import urllib.request
 
 
@@ -67,7 +67,7 @@ def prediction_page():
     
     # Get the raw URL of your model from GitHub
     
-    model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/dev/gb_model_tuned.pkl"
+    model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/src/gb_model_tuned.joblib"
 
     # response = requests.get(model_url)
     # with open("gb_model_tuned.pkl", "wb") as f:
@@ -81,7 +81,7 @@ def prediction_page():
 
         with urllib.request.urlopen(model_url) as url:
 
-            model_data = pickle.load(url)
+            model_data = joblib.load(url)
 
         return model_data
 
