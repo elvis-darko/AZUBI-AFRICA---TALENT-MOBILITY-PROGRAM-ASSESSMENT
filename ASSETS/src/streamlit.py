@@ -88,6 +88,8 @@ def prediction_page():
 
 
     model = load_model()
+
+    model = pd.read_pickle(model)
     
 
 
