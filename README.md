@@ -1,8 +1,13 @@
 # AZUBI AFRICA TALENT MOBILITY PROGRAM ASSESSMENT
 
-## ABOUT THE PROJECT
+## PROJECT DESCRIPTION
 As a member of the data analytics team, my role involves creating tools that use the bank's operational data to help the business achieve its goals and projections.</br>
 For this project, I have been tasked to predict whether a client will subscribe to a term deposit (indicated by the variable "y" as "yes" or "n" as "no"). My task involves analyzing the dataset to assess trends and inisghts. Also, I am tasked to build a predictive model that determines the likelihood of a client subscribing to a term deposit based on the features provided in the dataset.
+
+## SUMMARY
+| PROJET CODE      | NAME        |   DEPLOYED APP | DESCRIPTION|
+|-----------|-------------|------|------|
+|TMP_1         | CLIENT TERM DEPOSIT PREDICTION  | [STREAMLIT APP](https://elvisdarkotmp.streamlit.app/)| Data Scientist is tasked to train and deploy a machine learning model that that predicts the likelihood of a client subscribing for the Bank's Term Deposit |
 
 Sample of my tasks are as follows;
 1. Conduct Exploratory Data Analysis (EDA)</br>
@@ -109,12 +114,12 @@ The evaluation metric is the F1-score. The model would predict the likelihood of
 The final work would look like this:
 
             client 1d                                   TERM DEPOSIT
-            00001                                            0
-            000055                                           1
-            000081                                           1
+            00001                                            no
+            000055                                           yes
+            000081                                           no
 
-- `0 Stands for NO, meaning the client is not likely to suscribe to a term limit`
-- `1 Stands for YES, meaning the client is likely to suscribe to a term limit`
+- `no Stands for NO, meaning the client is not likely to suscribe to a term limit`
+- `yes Stands for YES, meaning the client is likely to suscribe to a term limit`
 
 
 
@@ -125,6 +130,11 @@ Here are some ressources you would read to have a good understanding of tools, p
 - [Create user interfaces for machine learning models](https://www.youtube.com/watch?v=RiCQzBluTxU)
 - [Getting started with Streamlit](https://docs.streamlit.io/library/get-started)
 
+  # SCREESHOTS OF DEPLOYED APP
+![Alt text](https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/image.png) 
+![Alt text](https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/2.jpg)
+![Alt text](https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/1.jpg)
+![Alt text](https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/3.jpg)
 
 ## CONTRIBUTORS
 | NAME  |   COUNTRY |   E-MAIL  |
