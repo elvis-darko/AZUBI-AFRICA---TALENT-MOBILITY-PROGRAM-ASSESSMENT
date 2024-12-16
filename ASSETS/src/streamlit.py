@@ -67,7 +67,7 @@ def prediction_page():
     
     # Get the raw URL of your model from GitHub
     
-    model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/dev/model_tuned.pkl"
+    model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/dev/gb_model_tuned.pkl"
 
     # response = requests.get(model_url)
     # with open("gb_model_tuned.pkl", "wb") as f:
