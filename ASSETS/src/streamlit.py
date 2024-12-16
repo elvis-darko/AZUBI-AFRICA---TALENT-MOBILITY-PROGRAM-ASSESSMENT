@@ -69,27 +69,27 @@ def prediction_page():
     
     model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/dev/gb_model_tuned.pkl"
 
-    # response = requests.get(model_url)
-    # with open("gb_model_tuned.pkl", "wb") as f:
-    #     f.write(response.content)
+    response = requests.get(model_url)
+    with open("gb_model_tuned.pkl", "wb") as f:
+        f.write(response.content)
         
-    # model = pickle.load(open("gb_model_tuned.joblib", "rb"))
+    model = pickle.load(open("gb_model_tuned.joblib", "rb"))
     # st.cache_data 
     # st.cache_resource
 
-    def load_model():
+    # def load_model():
 
-        with urllib.request.urlopen(model_url) as url:
+    #     with urllib.request.urlopen(model_url) as url:
 
-            model_data = pickle.load(url)
+    #         model_data = pickle.load(url)
 
-        return model_data
+    #     return model_data
 
 
 
-    model = load_model()
+    # model = load_model()
 
-    model = pd.read_pickle(model)
+    # model = pd.read_pickle(model)
     
 
 
