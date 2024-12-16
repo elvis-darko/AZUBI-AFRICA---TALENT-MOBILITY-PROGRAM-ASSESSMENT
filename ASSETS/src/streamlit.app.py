@@ -6,8 +6,6 @@ import matplotlib.pyplot as plt
 import requests
 from PIL import Image
 import pandas as pd
-import sklearn
-from sklearn.preprocessing import LabelEncoder
 
 
 
@@ -52,11 +50,30 @@ def home_page():
         <li>Feedback (no): Provide input for improvements.</li>
     </ul>
     """, unsafe_allow_html=True)
-     
+#     st.write('The following are the features of clients')
+    
+# table = pd.DataFrame([
+#     {"FEATURE": "Age", "DESCRIPTION": "Age of client", "DATA TYPE": "Numerical"},
+#     {"FEATURE": "Age", "DESCRIPTION": "Age of client", "DATA TYPE": "Numerical"}])
+    
+#st.table(table)    
    
 
 # Set up prediction page
-def prediction_page():    
+def prediction_page():   
+    
+    # Raw GitHub URL of your model
+    model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/src/gb_model_tuned.joblib"
+
+    # Download the model file from the URL and save it locally
+    response = requests.get(model_url)
+    if response.status_code == 200:
+        with open("gb_model_tuned.joblib", "wb") as f:
+            f.write(response.content)
+        gb_model_tuned = joblib.load("gb_model_tuned.joblib")
+    else:
+        st.error("Failed to load the model from GitHub.")
+
 
     # Title of the page
     st.title('CLIENT TERM SUBSCRIPTION PREDICTION')
@@ -64,8 +81,8 @@ def prediction_page():
     # Add the image using st.image
     image_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/deposit.jpeg"
     st.image(image_url, caption='Term Deposit Prediction App', use_container_width=True)
-
-     # Create categorical features
+    
+    # Create categorical features
     job_type = ['housemaid', 'services', 'administration', 'blue-collar', 'technician',
        'retired', 'management', 'unemployed', 'self-employed', 'unknown',
        'entrepreneur', 'student']
@@ -110,64 +127,41 @@ def prediction_page():
     campaign_diff = calculate_campaign_diff(campaign, previous)
     
     # Display calculated values
-    st.number_input("Campaign Difference", campaign_diff)
+    st.text_input("Campaign Difference", campaign_diff)
     
 
     # Make prediction
     if st.button('Predict'):
-        features = {
-            "age" : age,
-            "job" : job, 
-            "marital" : marital, 
-            "education" : education, 
-            "default" : default, 
-            "housing" : housing, 
-            "loan" : loan, 
-            "contact" : contact, 
-            "month" : month, 
-            "day_of_week" : day_of_week, 
-            "duration" : duration, 
-            "campaign" : campaign, 
-            "pdays" : pdays,
-            "previous" : previous, 
-            "poutcome" : poutcome,  
-            "campaign_diff" : campaign_diff
-            }
-       
-        
-        st.dataframe([features])
-        #mlit input_features = np.array([[age, job, marital, education, default, housing, loan, contact, month, day_of_week, duration, previous, poutcome, pdays, campaign, campaign_diff]])
-        input_features = pd.DataFrame([features])
+        input_features = np.array([[age, job, marital, education, default, housing, loan, contact, 
+                                    month, day_of_week, duration, previous, poutcome, pdays, campaign, 
+                                    campaign_diff]])
+        prediction = gb_model_tuned.predict(input_features)
+        #prediction_probability = gb_model_tuned.predict_proba(input_features)[:, 1]  # Probability of churn
 
-
-        input_features["campaign_diff"] = input_features["campaign"] - input_features["previous"]
-        input_features = input_features.astype(str)
-        input_features = input_features.values.reshape(-1, 1)
-
-        #input_features = pd.DataFrame([features])
-        encoder = LabelEncoder()
-        #encoder.transformstre(input_features[["job", "marital",  "education", "default", "housing", "loan", "contact", "month",  "day_of_week", "poutcome"]])
-        input_features = encoder.fit_transform(input_features)
-
-        # Raw GitHub URL of your model
-        model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/src/gb_model_tuned.joblib"
-
-        # Download the model file from the URL and save it locally
-        response = requests.get(model_url)
-        if response.status_code == 200:
-            with open("gb_model_tuned.joblib", "wb") as f:
-                f.write(response.content)
-            gb_model_tuned = joblib.load("gb_model_tuned.joblib")
-        else:
-            st.error("Failed to load the model from GitHub.")
-        
         if prediction[0] == "yes":
             st.image("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/suscribe.png", use_container_width=True)
             st.write('Prediction: Client likely to subscribe to new term deposit')
             
+            # Display churn probability score
+            st.write(f'Term Deposit Probability Score: {round(prediction_probability[0] * 100)}%')
+            
             # Display accuracy score
             accuracy = 0.80  # Replace with your actual accuracy score
             st.write(f'Accuracy Score: {accuracy:.2f}')
+            
+            # Display feature importance as a bar chart
+            # feature_importance = gb_model_tuned.feature_importances_
+            # feature_names = [age, job, marital, education, default, housing, loan, contact, month, 
+            #                  day_of_week, duration, previous, poutcome, pdays, campaign, campaign_diff]
+            
+            # # Create a bar chart
+            # plt.barh(feature_names, feature_importance)
+            # plt.xlabel('Feature Importance')
+            # plt.ylabel('Features')
+            # plt.title('Feature Importance Scores')
+            
+            # # Display the chart using Streamlit
+            # st.pyplot(plt)
             
             # Display recommendations for customers who did not subscribe to new term deposit
             st.write("Recommendations for Term Deposit by clients:")
@@ -197,7 +191,7 @@ def prediction_page():
             
 
 def developers_page():
-     st.title('THE APP DEVELOPER')
+     st.title('THE APP DEVELOPERS')
      dev_url = "https://github.com/elvis-darko/Team_Zurich_Capstone_Project/raw/main/Assets/images/developer.png"
      st.image(dev_url, caption='Term Deposit Subscription App', use_container_width=True)
      st.write(f"""
@@ -217,11 +211,11 @@ with st.sidebar:
    )
     
 
-if selected == "HOME":
+if selected == "Home":
     home_page()
 
-elif selected == "PREDICTION":
+elif selected == "Prediction":
     prediction_page()
 
-elif selected == "DEVELOPER":
+elif selected == "Developers":
     developers_page()
