@@ -35,8 +35,8 @@ def calculate_campaign_diff(campaign, previous):
 # Set up home page
 def home_page():
     st.title('CLIENT TERM SUBSCRIPTION APP')
-    exp_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/images.jpeg"
-    st.image(exp_url, caption='PEOPLE NATIONAL BANK TERM DEPOSIT PREDICTION APP', use_container_width=True)
+    #exp_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/images.jpeg"
+    #st.image(exp_url, caption='PEOPLE NATIONAL BANK TERM DEPOSIT PREDICTION APP', use_container_width=True)
     st.write("""<h2>Welcome to the People's National Bank Client Term Deposit Prediction App!</h2>""", unsafe_allow_html=True)
     st.write("This App is for an African commercial bank, The People's National Bank. The bank provides all kinds of financial assistance to clients.")
     st.write("The objective of this project is to develop a machine learning model to predict the likelihood of each client subscribing to a term depoist given certain conditions.")
@@ -62,8 +62,8 @@ def prediction_page():
     st.title('CLIENT TERM SUBSCRIPTION PREDICTION')
 
     # Add the image using st.image
-    image_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/deposit.jpeg"
-    st.image(image_url, caption='Term Deposit Prediction App', use_container_width=True)
+    #image_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/deposit.jpeg"
+    #st.image(image_url, caption='Term Deposit Prediction App', use_container_width=True)
 
      # Create categorical features
     job_type = ['housemaid', 'services', 'administration', 'blue-collar', 'technician',
@@ -157,12 +157,12 @@ def prediction_page():
         if response.status_code == 200:
             with open("gb_model_tuned.joblib", "wb") as f:
                 f.write(response.content)
-            gb_model_tuned = pickle.load("gb_model_tuned.pkl")
+            python -m pip install --upgrade setuptoolsgb_model_tuned = pickle.load("gb_model_tuned.pkl")
         else:
              st.error("Failed to load the model from GitHub.")
         
         if prediction == "yes":
-            st.image("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/suscribe.png", use_container_width=True)
+            #st.image("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/suscribe.png", use_container_width=True)
             st.write('Prediction: Client likely to subscribe to new term deposit')
             
             # Display accuracy score
@@ -179,8 +179,8 @@ def prediction_page():
             
         else:
             # Handle the case where the prediction is churn
-            unsuscribe_pic = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/unsuscribe.jpeg"
-            st.image(unsuscribe_pic, use_container_width=True) 
+            #unsuscribe_pic = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/unsuscribe.jpeg"
+            #st.image(unsuscribe_pic, use_container_width=True) 
             st.write('Prediction: Customer is likely not to subscribe to new term deposit')
             
             # Display churn probability score
@@ -198,8 +198,8 @@ def prediction_page():
 
 def developers_page():
      st.title('THE APP DEVELOPER')
-     dev_url = "https://github.com/elvis-darko/Team_Zurich_Capstone_Project/raw/main/Assets/images/developer.png"
-     st.image(dev_url, caption='Term Deposit Subscription App', use_container_width=True)
+     #dev_url = "https://github.com/elvis-darko/Team_Zurich_Capstone_Project/raw/main/Assets/images/developer.png"
+     #st.image(dev_url, caption='Term Deposit Subscription App', use_container_width=True)
      st.write(f"""
     <p>This term deposit subscription App was solely built by Elvis Darko for the People's National Bank</p>
     <p>Elvis Darko is a budding Azubi Africa trained Data Scientist who aspires to be a fully fledged Artificial Intelligence Engineer</p>
@@ -207,8 +207,8 @@ def developers_page():
  
 # Set up option menu (side bar)
 with st.sidebar:
-    cust_url =  "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/images.jpeg"
-    st.image(cust_url, use_container_width=True)
+    #cust_url =  "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/images.jpeg"
+    #st.image(cust_url, use_container_width=True)
     selected = option_menu(
         menu_title=None,
         options=["Home", "Prediction", "Developers"],
