@@ -4,7 +4,6 @@ stqdm
 joblib
 numpy
 pandas
-shap
 streamlit
 scikit-learn
 matplotlib
