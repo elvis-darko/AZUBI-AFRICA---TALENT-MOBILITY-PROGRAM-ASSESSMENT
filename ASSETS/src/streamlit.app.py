@@ -154,14 +154,14 @@ def prediction_page():
 
         # Download the model file from the URL and save it locally
         response = requests.get(model_url)
-        #if response.status_code == 200:
+        if response.status_code == 200:
         with open("gb_model_tuned.joblib", "wb") as f:
             f.write(response.content)
         gb_model_tuned = pickle.load("gb_model_tuned.pkl")
-        # else:
-        #     st.error("Failed to load the model from GitHub.")
+        else:
+             st.error("Failed to load the model from GitHub.")
         
-        if prediction[0] == "yes":
+        if prediction == "yes":
             st.image("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/suscribe.png", use_container_width=True)
             st.write('Prediction: Client likely to subscribe to new term deposit')
             
