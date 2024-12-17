@@ -212,25 +212,6 @@ def prediction_page():
             st.write("3. Unlock personalized recommendations and tailored experiences as a loyalty program member. We'll cater  for your preferences and needs like never before.")
             st.write("4. Get an exclusive sneak peek at upcoming features or products. You can even participate in beta testing and help shape our future offerings.")
             st.write("5. Accumulate rewards points with every purchase, which you can redeem for exciting prizes, discounts, or even free products.")
-            # Plot feature importance 
-            feature_importances = model.feature_importances_
-
-            # Get feature names
-            feature_names = input_features.columns 
-
-            # Sort feature importances in descending order
-            sorted_idx = np.argsort(feature_importances)[::-1]
-                
-            # Plot bar chart
-            plt.barh(feature_names[sorted_idx], feature_importances[sorted_idx])
-
-            plt.xlabel("Features")
-
-            plt.ylabel("Feature Importance")
-
-            plt.title("Feature Importances")
-
-            st.pyplot(plt)
             
         else:
             # Handle the case where the prediction is churn
@@ -253,6 +234,26 @@ def prediction_page():
             st.write("4. Get an exclusive sneak peek at upcoming features or products. You can even participate in beta testing and help shape our future offerings.")
             st.write("5. Accumulate rewards points with every purchase, which you can redeem for exciting prizes, discounts, or even free products.")
             
+            # Plot feature importance
+            # Plot feature importance 
+            feature_importances = model.feature_importances_
+
+            # Get feature names
+            feature_names = input_features.columns 
+
+            # Sort feature importances in descending order
+            sorted_idx = np.argsort(feature_importances)[::-1]
+                
+            # Plot bar chart
+            plt.barh(feature_names[sorted_idx], feature_importances[sorted_idx])
+
+            plt.xlabel("Features")
+
+            plt.ylabel("Feature Importance")
+
+            plt.title("Feature Importances")
+
+            st.pyplot(plt)
 
 def developers_page():
     st.title('THE APP DEVELOPER')
