@@ -217,8 +217,8 @@ def prediction_page():
 
 def developers_page():
      st.title('THE APP DEVELOPER')
-     dev_url = "https://github.com/elvis-darko/Team_Zurich_Capstone_Project/raw/main/Assets/images/developer.png"
-     st.image(dev_url, caption='Term Deposit Subscription App', use_container_width=True)
+     #dev_url = "https://github.com/elvis-darko/Team_Zurich_Capstone_Project/raw/main/Assets/images/developer.png"
+     #st.image(dev_url, caption='Term Deposit Subscription App', use_container_width=True)
      st.write(f"""
     <p>This term deposit subscription App was solely built by Elvis Darko for the People's National Bank</p>
     <p>Elvis Darko is a budding Azubi Africa trained Data Scientist who aspires to be a fully fledged Artificial Intelligence Engineer</p>
