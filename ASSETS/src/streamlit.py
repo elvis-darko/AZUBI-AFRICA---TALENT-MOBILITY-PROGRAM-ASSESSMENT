@@ -171,39 +171,22 @@ def prediction_page():
             accuracy = 0.80  # Replace with your actual accuracy score
             st.write(f'Accuracy Score: {accuracy:.2f}')
             
-            # # Display feature importance as a bar chart
-            # feature_importance = gb_model_tuned.feature_importances_
-            # feature_names = [age, job, marital, education, default, housing, loan, contact, month, 
-            #                   day_of_week, duration, previous, poutcome, pdays, campaign, campaign_diff]
+            # Display feature importance as a bar chart
+            feature_importance = model.feature_importances_
+            feature_names = [age, job, marital, education, default, housing, loan, contact, month, 
+                              day_of_week, duration, previous, poutcome, pdays, campaign, campaign_diff]
             
-            # # Create a bar chart
-            # plt.barh(feature_names, feature_importance)
-            # plt.xlabel('Feature Importance')
-            # plt.ylabel('Features')
-            # plt.title('Feature Importance Scores')
+            # Create a bar chart
+            plt.barh(feature_names, feature_importance)
+            plt.xlabel('Feature Importance')
+            plt.ylabel('Features')
+            plt.title('Feature Importance Scores')
             
-            # Display the chart using Streamlit
-            #st.pyplot(plt)
-
-            # Plot feature importance 
-            feature_importances = model.feature_importances_
-
-            # Get feature names
-            feature_names = input_features.columns 
-
-            # Sort feature importances in descending order
-            sorted_idx = np.argsort(feature_importances)[::-1]
-                
-            # Plot bar chart
-            plt.barh(feature_names[sorted_idx], feature_importances[sorted_idx])
-
-            plt.xlabel("Features")
-
-            plt.ylabel("Feature Importance")
-
-            plt.title("Feature Importances")
-
+            #Display the chart using Streamlit
             st.pyplot(plt)
+
+        
+          
                         
             # Display recommendations for customers who did not subscribe to new term deposit
             st.write("Recommendations for Term Deposit by clients:")
@@ -232,28 +215,7 @@ def prediction_page():
             st.write("2. Explore our new product offerings for additional benefits")
             st.write("3. Unlock personalized recommendations and tailored experiences as a loyalty program member. We'll cater  for your preferences and needs like never before.")
             st.write("4. Get an exclusive sneak peek at upcoming features or products. You can even participate in beta testing and help shape our future offerings.")
-            st.write("5. Accumulate rewards points with every purchase, which you can redeem for exciting prizes, discounts, or even free products.")
-            
-            # Plot feature importance
-            # Plot feature importance 
-            feature_importances = model.feature_importances_
-
-            # Get feature names
-            feature_names = input_features.columns 
-
-            # Sort feature importances in descending order
-            sorted_idx = np.argsort(feature_importances)[::-1]
-                
-            # Plot bar chart
-            plt.barh(feature_names[sorted_idx], feature_importances[sorted_idx])
-
-            plt.xlabel("Features")
-
-            plt.ylabel("Feature Importance")
-
-            plt.title("Feature Importances")
-
-            st.pyplot(plt)
+            st.write("5. Accumulate rewards points with every purchase, which you can redeem for exciting prizes, discounts, or even free products.") 
 
 def developers_page():
     st.title('THE APP DEVELOPER')
