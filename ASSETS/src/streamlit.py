@@ -10,7 +10,7 @@ import urllib.request
 
 
 # Set style of page
-st.set_page_config(page_title="PEOPLE  NATIONAL BANK TERM DEPOSIT PREDICTION APP", page_icon="GH", initial_sidebar_state="expanded")
+st.set_page_config(page_title="AZUBI TMP - TERM DEPOSIT PREDICTION APP", page_icon="GH", initial_sidebar_state="expanded")
 
 hide_streamlit_style = """
             <style>
@@ -32,7 +32,7 @@ def calculate_campaign_diff(campaign, previous):
 
 # Set up home page
 def home_page():
-    st.title('CLIENT TERM SUBSCRIPTION APP')
+    st.title("CLIENTS' TERM DEPOSIT SUBSCRIPTION APP")
     exp_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/images.jpeg"
     st.image(exp_url, caption='PEOPLE NATIONAL BANK TERM DEPOSIT PREDICTION APP', use_container_width=True)
     st.write("""<h2>Welcome to the People's National Bank Client Term Deposit Prediction App!</h2>""", unsafe_allow_html=True)
@@ -65,7 +65,7 @@ def prediction_page():
 
 
     # Title of the page
-    st.title('CLIENT TERM SUBSCRIPTION PREDICTION')
+    st.title('TERM DEPOSIT SUBSCRIPTION PREDICTION')
 
     # Add the image using st.image
     image_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/deposit.jpeg"
@@ -183,7 +183,7 @@ def prediction_page():
             # plt.title('Feature Importance Scores')
             
             # Display the chart using Streamlit
-            st.pyplot(plt)
+            #st.pyplot(plt)
             
             # Display recommendations for customers who did not subscribe to new term deposit
             st.write("Recommendations for Term Deposit by clients:")
@@ -216,10 +216,10 @@ def prediction_page():
             
 
 def developers_page():
-     st.title('THE APP DEVELOPER')
-     #dev_url = "https://github.com/elvis-darko/Team_Zurich_Capstone_Project/raw/main/Assets/images/developer.png"
-     #st.image(dev_url, caption='Term Deposit Subscription App', use_container_width=True)
-     st.write(f"""
+    st.title('THE APP DEVELOPER')
+    dev_url = "https://github.com/elvis-darko/Team_Zurich_Capstone_Project/raw/main/Assets/images/developer.png"
+    st.image(dev_url, caption='Term Deposit Subscription App', use_container_width=True)
+    st.write(f"""
     <p>This term deposit subscription App was solely built by Elvis Darko for the People's National Bank</p>
     <p>Elvis Darko is a budding Azubi Africa trained Data Scientist who aspires to be a fully fledged Artificial Intelligence Engineer</p>
     """, unsafe_allow_html=True)
