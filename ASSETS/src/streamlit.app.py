@@ -211,7 +211,7 @@ with st.sidebar:
     #st.image(cust_url, use_container_width=True)
     selected = option_menu(
         menu_title=None,
-        options=["Home", "Prediction", "Developers"],
+        options=["HOME", "PREDICTION", "DEVELOPER"],
         icons=["house", "droplet", "people"],
         styles=css_style
    )
