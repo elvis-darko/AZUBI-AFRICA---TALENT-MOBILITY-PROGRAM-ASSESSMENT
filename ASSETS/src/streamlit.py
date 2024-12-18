@@ -166,7 +166,7 @@ def prediction_page():
             # st.write(f'Term Deposit Probability Score: {round(prediction_probability[0] * 100)}%')
             
             # Display accuracy score
-            accuracy = 0.80  # Replace with your actual accuracy score
+            accuracy = 0.88  # Replace with your actual accuracy score
             st.write(f'Accuracy Score: {accuracy:.2f}')
             st.image("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/feature.png", use_container_width=True)
 
@@ -186,7 +186,7 @@ def prediction_page():
             st.image(unsuscribe_pic, use_container_width=True) 
             st.write('Prediction: NO, Customer is likely not to subscribe to new term deposit')
             # Display accuracy score
-            accuracy = 0.80  # Replace with your actual accuracy score
+            accuracy = 0.88  # Replace with your actual accuracy score
             st.write(f'Accuracy Score: {accuracy:.2f}')
             st.image("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/feature.png", use_container_width=True)
             # Display churn probability score
