@@ -169,19 +169,6 @@ def prediction_page():
             accuracy = 0.80  # Replace with your actual accuracy score
             st.write(f'Accuracy Score: {accuracy:.2f}')
             
-            # Display feature importance as a bar chart
-            feature_importance = model.feature_importances_
-            feature_names = [age, job, marital, education, default, housing, loan, contact, month, 
-                              day_of_week, duration, previous, poutcome, pdays, campaign, campaign_diff]
-            
-            # Create a bar chart
-            plt.barh(feature_names, feature_importance)
-            plt.xlabel('Feature Importance')
-            plt.ylabel('Features')
-            plt.title('Feature Importance Scores')
-            
-            #Display the chart using Streamlit
-            st.pyplot(plt)
                         
             # Display recommendations for customers who did not subscribe to new term deposit
             st.write("Recommendations for Term Deposit by clients:")
@@ -200,19 +187,6 @@ def prediction_page():
             accuracy = 0.80  # Replace with your actual accuracy score
             st.write(f'Accuracy Score: {accuracy:.2f}')
             
-            feature_importance = model.feature_importances_
-            feature_names = [age, job, marital, education, default, housing, loan, contact, month, 
-                              day_of_week, duration, previous, poutcome, pdays, campaign, campaign_diff]
-            
-            # Create a bar chart
-            plt.barh(feature_names, feature_importance)
-            plt.xlabel('Feature Importance')
-            plt.ylabel('Features')
-            plt.title('Feature Importance Scores')
-            
-            #Display the chart using Streamlit
-            st.pyplot(plt)
-                        
             # Display churn probability score
             #st.write(f'Churn Probability Score: {round(prediction_probability[0] * 100, 2)}%')
             
