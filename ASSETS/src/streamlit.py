@@ -158,7 +158,7 @@ def prediction_page():
         #prediction_probability = gb_model_tuned.predict_proba(input_features)[:, 1]  # Probability of churn
 
         if prediction[0] == "yes":
-            st.image("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/suscribe.png", use_container_width=True)
+            st.image("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/suscribe.png", #use_container_width=True)
             st.write('Prediction: YES, Client is likely to subscribe to new term deposit')
             
             # Display churn probability score
@@ -183,7 +183,7 @@ def prediction_page():
         else:
             # Handle the case where the prediction is churn
             unsuscribe_pic = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/unsuscribe.jpeg"
-            st.image(unsuscribe_pic, use_container_width=True) 
+            st.image(unsuscribe_pic, #use_container_width=True) 
             st.write('Prediction: NO, Customer is likely not to subscribe to new term deposit')
             # Display accuracy score
             accuracy = 0.88  # Replace with your actual accuracy score
