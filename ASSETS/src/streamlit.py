@@ -110,11 +110,11 @@ def prediction_page():
     duration = st.number_input('Duration: Last contact duration of the year, in seconds')
     previous = st.number_input('Previous: Number of contacts performed before this campaign and for this client')
     poutcome = st.selectbox('Previous Outcome: Outcome of the previous marketing campaign', outcome)
-    emp.var.rate = st.number_input('Employment Variation Rate: Client Employment variation rate', emp.var.rate) 
-    cons.price.idx = st.number_input('Consumer Price Index: Current Consumer Price Index', cons.price.idx)
-    cons.conf.idx =  st.number_input('Consumer Confidence Index: Current Consumer Confidence Index', cons.conf.idx)
+    emp_var_rate = st.number_input('Employment Variation Rate: Client Employment variation rate', emp_var_rate) 
+    cons_price_idx = st.number_input('Consumer Price Index: Current Consumer Price Index', cons_price_idx)
+    cons_conf_idx =  st.number_input('Consumer Confidence Index: Current Consumer Confidence Index', cons_conf_idx)
     euribor3m =  st.number_input('Euro Interbank Offered Rate: Current 3 months EURIBO rate', euribor3m)
-    nr.employed = st.number_input('Number of Employees: Number of Bank Employees', nr.employed)
+    nr_employed = st.number_input('Number of Employees: Number of Bank Employees', nr_employed)
     pdays = st.number_input('Pdays: Number of days that passed by after the client was last contacted from a previous campaign')
     campaign = st.number_input('Campaign: Number of contacts performed during this campaign and for this client')
 
@@ -143,10 +143,11 @@ def prediction_page():
             "pdays" : pdays,
             "previous" : previous, 
             "poutcome" : poutcome,  
-            "emp.var.rate" : emp.var.rate,
-            "cons.price.idx" : cons.price.idx,
+            "emp_var_rate" : emp_var_rate,
+            "cons_price_idx" : cons_price_idx,
+            "cons_conf_idx" : cons_conf_idx,
             "euribor3m" : euribor3m,
-            "nr.employed" : nr.employed,
+            "nr_employed" : nr_employed,
             "campaign_diff" : campaign_diff
         }
         
