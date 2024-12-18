@@ -168,15 +168,17 @@ def prediction_page():
             # Display accuracy score
             accuracy = 0.80  # Replace with your actual accuracy score
             st.write(f'Accuracy Score: {accuracy:.2f}')
+            st.image("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/feature.png", use_container_width=True)
+
             
                         
             # Display recommendations for customers who did not subscribe to new term deposit
-            st.write("Recommendations for Term Deposit by clients:")
-            st.write("1. The marketing team should .")
-            st.write("2. Explore our new product offerings for additional benefits")
-            st.write("3. Unlock personalized recommendations and tailored experiences as a loyalty program member. We'll cater  for your preferences and needs like never before.")
-            st.write("4. Get an exclusive sneak peek at upcoming features or products. You can even participate in beta testing and help shape our future offerings.")
-            st.write("5. Accumulate rewards points with every purchase, which you can redeem for exciting prizes, discounts, or even free products.")
+            # st.write("Recommendations for Term Deposit by clients:")
+            # st.write("1. The marketing team should .")
+            # st.write("2. Explore our new product offerings for additional benefits")
+            # st.write("3. Unlock personalized recommendations and tailored experiences as a loyalty program member. We'll cater  for your preferences and needs like never before.")
+            # st.write("4. Get an exclusive sneak peek at upcoming features or products. You can even participate in beta testing and help shape our future offerings.")
+            # st.write("5. Accumulate rewards points with every purchase, which you can redeem for exciting prizes, discounts, or even free products.")
             
         else:
             # Handle the case where the prediction is churn
@@ -186,18 +188,18 @@ def prediction_page():
             # Display accuracy score
             accuracy = 0.80  # Replace with your actual accuracy score
             st.write(f'Accuracy Score: {accuracy:.2f}')
-            
+            st.image("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/feature.png", use_container_width=True)
             # Display churn probability score
             #st.write(f'Churn Probability Score: {round(prediction_probability[0] * 100, 2)}%')
             
             # Add a message to clients who churn
             # Display recommendations for customers who did not subscribe to new term deposit
-            st.write("Recommendations for Term Deposit by clients:")
-            st.write("1. The marketing team should .")
-            st.write("2. Explore our new product offerings for additional benefits")
-            st.write("3. Unlock personalized recommendations and tailored experiences as a loyalty program member. We'll cater  for your preferences and needs like never before.")
-            st.write("4. Get an exclusive sneak peek at upcoming features or products. You can even participate in beta testing and help shape our future offerings.")
-            st.write("5. Accumulate rewards points with every purchase, which you can redeem for exciting prizes, discounts, or even free products.") 
+            # st.write("Recommendations for Term Deposit by clients:")
+            # st.write("1. The marketing team should .")
+            # st.write("2. Explore our new product offerings for additional benefits")
+            # st.write("3. Unlock personalized recommendations and tailored experiences as a loyalty program member. We'll cater  for your preferences and needs like never before.")
+            # st.write("4. Get an exclusive sneak peek at upcoming features or products. You can even participate in beta testing and help shape our future offerings.")
+            # st.write("5. Accumulate rewards points with every purchase, which you can redeem for exciting prizes, discounts, or even free products.") 
 
 def developers_page():
     st.title('THE APP DEVELOPER')
