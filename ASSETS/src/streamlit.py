@@ -157,7 +157,7 @@ def prediction_page():
 
         # # Change datatype of dataframe and reshape
         # input_features = input_features.astype(str)
-        # input_features = input_features.values.reshape(-1, 1)
+        input_features = input_features.values.reshape(-1, 1)
 
         # # import encoder
         # encoder = LabelEncoder()
