@@ -242,6 +242,7 @@ def prediction_page():
             
             # Plot feature importance 
             plt.style.use("fivethirtyeight")
+            plt.figure(figsize=(10,5))
             feature_importances = model.feature_importances_
 
             # Get feature names
