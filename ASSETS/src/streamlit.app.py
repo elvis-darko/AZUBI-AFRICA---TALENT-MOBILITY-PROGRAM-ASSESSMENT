@@ -38,14 +38,14 @@ def home_page():
     st.image(exp_url, caption='PEOPLE NATIONAL BANK TERM DEPOSIT PREDICTION APP', use_container_width=True)
     st.write("""<h2>Welcome to the People's National Bank Client Term Deposit Prediction App!</h2>""", unsafe_allow_html=True)
     st.write("This App is for an African commercial bank, The People's National Bank. The bank provides all kinds of financial assistance to clients.")
-    st.write("The objective of this project is to develop a machine learning model to predict the likelihood of each client subscribing to a term depoist given certain conditions.")
-    st.write("This will enable the bank in streamlining it's marketing campaigns to keep existing term deposit clients and also gan new subscribers.")
+    st.write("The objective of this project is to develop a machine learning model to predict the likelihood of each client subscribing to a term depoist given certain defined features.")
+    st.write("This will enable the bank in streamlining it's marketing campaigns to keep existing term deposit clients and also gain new subscribers.")
     st.write(f"""
     <p>The following method will help you to use the app:</p>
     <ul>
-        <li>Input Features: Imput values for customer features.</li>
-        <li>Click 'Predict': Get term deposit prediction."</li>
-        <li>Result: See if it's 'yes' or 'no'.</li>
+        <li>Input Features: Input values for customer features.</li>
+        <li>Click Predict: This will give allow the model to predict the lieklihood of a client subscribing to a new term deposit using the entered client features.</li>
+        <li>Result: The prediction will show a YES or NO output, as to whether the client will subscribe a new term deposit.</li>
         <li>Recommendations (no): Explore subscription suggestions.</li>
         <li>Accuracy Score: Check prediction performance."</li>
         <li>Feedback (no): Provide input for improvements.</li>
@@ -56,14 +56,11 @@ def home_page():
 def prediction_page():    
     
     model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/dev/gb_model_tuned.pkl"
-
     response = requests.get(model_url)
     with open("gb_model_tuned.pkl", "wb") as f:
-        f.write(response.content)
-        
+        f.write(response.content)    
     model = pickle.load(open("gb_model_tuned.pkl", "rb"))
     
-
 
     # Title of the page
     st.title('TERM DEPOSIT SUBSCRIPTION PREDICTION')
@@ -126,7 +123,7 @@ def prediction_page():
     st.number_input("Campaign Difference", campaign_diff)
     
 
-    # Make prediction, 
+    # Create feature for dataframe 
     if st.button('Predict'):
         features = {
             "age" : age,
@@ -152,16 +149,11 @@ def prediction_page():
             "campaign_diff" : campaign_diff
         }
         
+        # Display client feature input as a dataframe in streamlit app
         st.dataframe([features])
+
+        # convert client input as a dataframe to be used by model
         input_features = pd.DataFrame([features])
-
-        # # Change datatype of dataframe and reshape
-        # input_features = input_features.astype(str)
-        
-
-        # # import encoder
-        # encoder = LabelEncoder()
-        # input_features = encoder.fit_transform(input_features)
 
         # Scale data with standard scaler to scale numeric data
         scaler = StandardScaler()
@@ -181,12 +173,11 @@ def prediction_page():
         input_features["day_of_week"] = encoder.fit_transform(input_features["day_of_week"])
         input_features["poutcome"] = encoder.fit_transform(input_features["poutcome"])
 
-        # Re-shape the dataframe
-        #input_features = input_features.values.reshape(-1, 1)
-
+    
+        # Use model for prediction
         prediction = model.predict(input_features)
-        #prediction_probability = gb_model_tuned.predict_proba(input_features)[:, 1]  # Probability of churn
-
+        
+        # Handle instance where prediction is "YES"
         if prediction[0] == "yes":
             st.image("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/suscribe.png")
             st.write('Prediction: YES, Client is likely to subscribe to new term deposit')
@@ -219,20 +210,23 @@ def prediction_page():
             st.pyplot(plt)
             
                         
-            # Display recommendations for customers who did not subscribe to new term deposit
-            # st.write("Recommendations for Term Deposit by clients:")
-            # st.write("1. The marketing team should .")
-            # st.write("2. Explore our new product offerings for additional benefits")
-            # st.write("3. Unlock personalized recommendations and tailored experiences as a loyalty program member. We'll cater  for your preferences and needs like never before.")
-            # st.write("4. Get an exclusive sneak peek at upcoming features or products. You can even participate in beta testing and help shape our future offerings.")
-            # st.write("5. Accumulate rewards points with every purchase, which you can redeem for exciting prizes, discounts, or even free products.")
-            
+            st.write(f"""
+            <p>RECOMMENDATIONS FOR CLIENTS WHO ARE LIKELY TO SUBSCRIBE:</p>
+            <ul>
+                <li>Input Features: Input values for customer features.</li>
+                <li>Click Predict: This will give allow the model to predict the lieklihood of a client subscribing to a new term deposit using the entered client features.</li>
+                <li>Result: The prediction will show a YES or NO output, as to whether the client will subscribe a new term deposit.</li>
+                <li>Recommendations (no): Explore subscription suggestions.</li>
+                <li>Accuracy Score: Check prediction performance."</li>
+                <li>Feedback (no): Provide input for improvements.</li>
+            </ul>
+            """, unsafe_allow_html=True)
         else:
-            # Handle the case where the prediction is churn
-            unsuscribe_pic = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/unsuscribe.jpeg"
-            st.image(unsuscribe_pic)
+            # Handle the case where the prediction is "NO"
+            st.image("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/unsuscribe.jpeg")
             st.write('Prediction: NO, Customer is likely not to subscribe to new term deposit')
-             # Display churn probability score
+            
+            # Display churn probability score
             prediction_probability = model.predict_proba(input_features)[:, 1] 
             st.write(f'Term Deposit Probability Score: {round(prediction_probability[0] * 100)}%')
             
@@ -240,17 +234,14 @@ def prediction_page():
             accuracy = 0.89  # Replace with your actual accuracy score
             st.write(f'Accuracy Score: {round(accuracy * 100)}%')            
             
-            # Plot feature importance 
+            # Plot feature importance to show most important client feature
             plt.style.use("fivethirtyeight")
             plt.figure(figsize=(10,5))
             feature_importances = model.feature_importances_
-
             # Get feature names
             feature_names = input_features.columns 
-
             # Sort feature importances in descending order
-            sorted_idx = np.argsort(feature_importances)[::-1]
-                
+            sorted_idx = np.argsort(feature_importances)[::-1]   
             # Plot bar chart
             plt.bar(feature_names[sorted_idx], feature_importances[sorted_idx])
             plt.xlabel("Features")
@@ -259,7 +250,6 @@ def prediction_page():
             plt.xticks(rotation=90)
             st.pyplot(plt)
             
-            # Add a message to clients who churn
             # Display recommendations for customers who did not subscribe to new term deposit
             # st.write("Recommendations for Term Deposit by clients:")
             # st.write("1. The marketing team should .")
@@ -268,6 +258,7 @@ def prediction_page():
             # st.write("4. Get an exclusive sneak peek at upcoming features or products. You can even participate in beta testing and help shape our future offerings.")
             # st.write("5. Accumulate rewards points with every purchase, which you can redeem for exciting prizes, discounts, or even free products.") 
 
+# Create developer page of streamlit app
 def developers_page():
     st.title('THE APP DEVELOPER')
     dev_url = "https://github.com/elvis-darko/Team_Zurich_Capstone_Project/raw/main/Assets/images/developer.png"
