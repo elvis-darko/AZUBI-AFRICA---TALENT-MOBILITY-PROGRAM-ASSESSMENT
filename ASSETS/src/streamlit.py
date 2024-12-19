@@ -7,6 +7,7 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 import pickle, joblib
 import urllib.request
+from sklearn.preprocessing import StandardScaler
 
 
 # Set style of page
@@ -110,11 +111,11 @@ def prediction_page():
     duration = st.number_input('Duration: Last contact duration of the year, in seconds')
     previous = st.number_input('Previous: Number of contacts performed before this campaign and for this client')
     poutcome = st.selectbox('Previous Outcome: Outcome of the previous marketing campaign', outcome)
-    emp_var_rate = st.number_input('Employment Variation Rate: Client Employment variation rate', emp_var_rate) 
-    cons_price_idx = st.number_input('Consumer Price Index: Current Consumer Price Index', cons_price_idx)
-    cons_conf_idx =  st.number_input('Consumer Confidence Index: Current Consumer Confidence Index', cons_conf_idx)
-    euribor3m =  st.number_input('Euro Interbank Offered Rate: Current 3 months EURIBO rate', euribor3m)
-    nr_employed = st.number_input('Number of Employees: Number of Bank Employees', nr_employed)
+    emp_var_rate = st.number_input('Employment Variation Rate: Client Employment variation rate') 
+    cons_price_idx = st.number_input('Consumer Price Index: Current Consumer Price Index')
+    cons_conf_idx =  st.number_input('Consumer Confidence Index: Current Consumer Confidence Index')
+    euribor3m =  st.number_input('Euro Interbank Offered Rate: Current 3 months EURIBO rate')
+    nr_employed = st.number_input('Number of Employees: Number of Bank Employees')
     pdays = st.number_input('Pdays: Number of days that passed by after the client was last contacted from a previous campaign')
     campaign = st.number_input('Campaign: Number of contacts performed during this campaign and for this client')
 
@@ -154,15 +155,31 @@ def prediction_page():
         st.dataframe([features])
         input_features = pd.DataFrame([features])
 
-        # Change datatype of dataframe and reshape
-        input_features = input_features.astype(str)
-        input_features = input_features.values.reshape(-1, 1)
+        # # Change datatype of dataframe and reshape
+        # input_features = input_features.astype(str)
+        # input_features = input_features.values.reshape(-1, 1)
 
-        # import encoder
+        # # import encoder
+        # encoder = LabelEncoder()
+        # input_features = encoder.fit_transform(input_features)
+
+        # Scale data with standard scaler to scale numeric data
+        scaler = StandardScaler()
+        num_cols = ["age", "duration", "campaign", "pdays", "previous", "campaign_diff"]
+        input_features[num_cols] = scaler.fit_transform(input_features[num_cols])
+
+        #import encoder to encode categorical data
         encoder = LabelEncoder()
-        #encoder.transformstre(input_features[["job", "marital",  "education", "default", "housing", "loan", "contact", "month",  "day_of_week", "poutcome"]])
-        input_features = encoder.fit_transform(input_features)
-        
+        input_features["job"] = encoder.fit_transform(input_features["job"])
+        input_features["marital"] = encoder.fit_transform(input_features["marital"])
+        input_features["education"] = encoder.fit_transform(input_features["education"])
+        input_features["default"] = encoder.fit_transform(input_features["default"])
+        input_features["housing"] = encoder.fit_transform(input_features["housing"])
+        input_features["loan"] = encoder.fit_transform(input_features["loan"])
+        input_features["contact"] = encoder.fit_transform(input_features["contact"])
+        input_features["month"] = encoder.fit_transform(input_features["month"])
+        input_features["day_of_week"] = encoder.fit_transform(input_features["day_of_week"])
+        input_features["poutcome"] = encoder.fit_transform(input_features["poutcome"])
 
         prediction = model.predict([input_features])
         #prediction_probability = gb_model_tuned.predict_proba(input_features)[:, 1]  # Probability of churn
