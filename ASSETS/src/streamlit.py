@@ -199,7 +199,10 @@ def prediction_page():
             accuracy = 0.88  # Replace with your actual accuracy score
             st.write(f'Accuracy Score: {accuracy:.2f}')
             st.image("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/feature.png", use_container_width=True)
+            
+            
             # Plot feature importance 
+            plt.style.use("fivethirtyeight")
             feature_importances = model.feature_importances_
 
             # Get feature names
