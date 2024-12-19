@@ -46,9 +46,10 @@ def home_page():
         <li>Input Features: Input values for customer features.</li>
         <li>Click Predict: This will give allow the model to predict the lieklihood of a client subscribing to a new term deposit using the entered client features.</li>
         <li>Result: The prediction will show a YES or NO output, as to whether the client will subscribe a new term deposit.</li>
-        <li>Recommendations (no): Explore subscription suggestions.</li>
-        <li>Accuracy Score: Check prediction performance."</li>
-        <li>Feedback (no): Provide input for improvements.</li>
+        <li>Accuracy Score : This score signifies the accuracy of the model in making a prediction."</li>
+        <li>The Term Deposit Propbability score: This score signifies the likelihood of a client subscribing to a new term deposit.</li>
+        <li>The Feature Importance Plot : This plot shows in descending order, the importance of each client feature<li>
+        <li>Recommendations : Using the importance of client features, the marketing department is given recommendations to retain and gain clients.</li>
     </ul>
     """, unsafe_allow_html=True)
 
@@ -213,12 +214,9 @@ def prediction_page():
             st.write(f"""
             <p>RECOMMENDATIONS FOR CLIENTS WHO ARE LIKELY TO SUBSCRIBE:</p>
             <ul>
-                <li>Input Features: Input values for customer features.</li>
-                <li>Click Predict: This will give allow the model to predict the lieklihood of a client subscribing to a new term deposit using the entered client features.</li>
-                <li>Result: The prediction will show a YES or NO output, as to whether the client will subscribe a new term deposit.</li>
-                <li>Recommendations (no): Explore subscription suggestions.</li>
-                <li>Accuracy Score: Check prediction performance."</li>
-                <li>Feedback (no): Provide input for improvements.</li>
+                <li>The marketing department should have long conversations with this clients and explain to them the benefits of having term deposits</li>
+                <li>Multiple people from the marketing department should contact this client, although one private banking counsultant should be assinged to him/her.</li>
+                <li>Dedicated follow-up calls should be made to this client even after subscribing for a new term deposit.</li>
             </ul>
             """, unsafe_allow_html=True)
         else:
@@ -249,15 +247,15 @@ def prediction_page():
             plt.title("Feature Importances")
             plt.xticks(rotation=90)
             st.pyplot(plt)
-            
-            # Display recommendations for customers who did not subscribe to new term deposit
-            # st.write("Recommendations for Term Deposit by clients:")
-            # st.write("1. The marketing team should .")
-            # st.write("2. Explore our new product offerings for additional benefits")
-            # st.write("3. Unlock personalized recommendations and tailored experiences as a loyalty program member. We'll cater  for your preferences and needs like never before.")
-            # st.write("4. Get an exclusive sneak peek at upcoming features or products. You can even participate in beta testing and help shape our future offerings.")
-            # st.write("5. Accumulate rewards points with every purchase, which you can redeem for exciting prizes, discounts, or even free products.") 
 
+            st.write(f"""
+            <p>RECOMMENDATIONS FOR CLIENTS WHO ARE NOT LIKELY TO SUBSCRIBE FOR NEW TERM DEPOSIT:</p>
+            <ul>
+                <li>The marketing department should have frequently contact these clients and explain to them the benefits of having term deposits</li>
+                <li>These clients should be targeted at the point of the year where consumer confiedence is at its peak. These clients will likely subscribe to new deposit when they are prepared to spend more.</li>
+                <li>The marketing department should hire more staff and train them to frequently call and handle this client to persuade him/her to try a new subscription.</li>
+            </ul>
+            """, unsafe_allow_html=True)
 # Create developer page of streamlit app
 def developers_page():
     st.title('THE APP DEVELOPER')
