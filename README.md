@@ -13,18 +13,14 @@ Sample of my tasks are as follows;
 1. Conduct Exploratory Data Analysis (EDA)</br>
 I identify patterns, correlations, and any necessary data preprocessing steps, such as handling missing values, outliers, and data normalization. 
 
-
 2. Feature Engineering</br>
 I evaluate which features might be most relevant to predicting client subscription and consider creating new features if applicable. 
 
-
-3. Build a Predictive Model</br> 
+3. Build a Predictive Model</br>
 I use a machine learning algorithm of choice to build a model predicting the subscription outcome. 
 
-
-4. Evaluate Model Performance</br> 
+4. Evaluate Model Performance</br>
 I use appropriate metrics such as accuracy, precision, recall, and F1 score to assess model effectiveness. Also, I Consider any imbalanced classes and adjust accordingly, possibly using techniques like oversampling, undersampling, or adjusting the class weights. 
-
 
 5. Explain the Findings and Insights</br>
 I summarize key findings from the EDA and insights from the model, such as which features were most impactful, common characteristics of clients likely to subscribe, and actionable recommendations for the marketing team. 
@@ -55,6 +51,11 @@ The data has 17 attributes which are listed in the table.
 |`DAY`|Last contact day of the month|Numeric|
 |`MONTH`|Last contact month of the year |Categorical|
 |`DURATION`|Last contact duration in seconds|Numeric|
+|`EMP.VAR.RATE`|Employee Varistion Rate|Numeric|
+|`CONS.PRICE.IDX`|Consumer Price Index|Numeric|
+|`CONS.CONF.IDX`|Consumer Confidence Index|Numeric|
+|`EURIBO3M`|3 months Euro Interbank Offered Rate|Numeric|
+|`NR.EMPLOYED`|Number of bank employees|Numeric|
 |`CAMPAIGN`|Number of contacts performed during this campaign and for this client|Numeric, includes last contact|
 |`PDAYS`|Number of days that passed by after the client was last contacted from a previous campaign|Numeric, -1 means client was not previously contacted|
 |`PREVIOUS`|Number of contacts performed before this campaign and for this client|Numerical|
