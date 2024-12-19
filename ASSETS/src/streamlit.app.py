@@ -45,8 +45,8 @@ def home_page():
     <ul>
         <li>Input Features: Input values for customer features.</li>
         <li>Click Predict: This will give allow the model to predict the lieklihood of a client subscribing to a new term deposit using the entered client features.</li>
-        <li>Result: The prediction will show a YES or NO output, as to whether the client will subscribe a new term deposit.</li>
-        <li>Accuracy Score : This score signifies the accuracy of the model in making a prediction."</li>
+        <li>Result: The prediction will show a YES or NO output, as to whether the client will subscribe a for new term deposit.</li>
+        <li>Accuracy Score : This score signifies the accuracy of the model in making a prediction.</li>
         <li>The Term Deposit Propbability score: This score signifies the likelihood of a client subscribing to a new term deposit.</li>
         <li>The Feature Importance Plot : This plot shows in descending order, the importance of each client feature<li>
         <li>Recommendations : Using the importance of client features, the marketing department is given recommendations to retain and gain clients.</li>
@@ -212,7 +212,7 @@ def prediction_page():
             
                         
             st.write(f"""
-            <p>RECOMMENDATIONS FOR CLIENTS WHO ARE LIKELY TO SUBSCRIBE:</p>
+            <p>RECOMMENDATIONS FOR CLIENTS WHO ARE LIKELY FOR SUBSCRIBE:</p>
             <ul>
                 <li>The marketing department should have long conversations with this clients and explain to them the benefits of having term deposits</li>
                 <li>Multiple people from the marketing department should contact this client, although one private banking counsultant should be assinged to him/her.</li>
@@ -222,7 +222,7 @@ def prediction_page():
         else:
             # Handle the case where the prediction is "NO"
             st.image("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/unsuscribe.jpeg")
-            st.write('Prediction: NO, Customer is likely not to subscribe to new term deposit')
+            st.write('Prediction: NO, Client is noy likely to subscribe to new term deposit')
             
             # Display churn probability score
             prediction_probability = model.predict_proba(input_features)[:, 1] 
@@ -272,17 +272,17 @@ with st.sidebar:
     st.image(cust_url, use_container_width=True)
     selected = option_menu(
         menu_title=None,
-        options=["Home", "Prediction", "Developer"],
+        options=["HOME", "PREDICTION", "DEVELOPER"],
         icons=["house", "droplet", "people"],
         styles=css_style
    )
     
 
-if selected == "Home":
+if selected == "HOME":
     home_page()
 
-elif selected == "Prediction":
+elif selected == "PREDICTION":
     prediction_page()
 
-elif selected == "Developer":
+elif selected == "DEVELOPER":
     developers_page()
