@@ -48,6 +48,8 @@ def home_page():
         <li>Result: The prediction will show a YES or NO output, as to whether the client will subscribe a for new term deposit.</li>
         <li>Accuracy Score : This score signifies the accuracy of the model in making a prediction.</li>
         <li>The Term Deposit Propbability score: This score signifies the likelihood of a client subscribing to a new term deposit.</li>
+        <li>The Feature Importance Plot : This plot shows in descending order, the importance of each client feature.</li>
+        <li>Recommendations : Using the importance of client features, the marketing department is given recommendations to retain and gain clients.</li>
     </ul>
     """, unsafe_allow_html=True)
 
