@@ -222,7 +222,7 @@ def prediction_page():
         else:
             # Handle the case where the prediction is "NO"
             st.image("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/unsuscribe.jpeg")
-            st.write('Prediction: NO, Client is noy likely to subscribe to new term deposit')
+            st.write('Prediction: NO, Client is not likely to subscribe to new term deposit')
             
             # Display churn probability score
             prediction_probability = model.predict_proba(input_features)[:, 1] 
