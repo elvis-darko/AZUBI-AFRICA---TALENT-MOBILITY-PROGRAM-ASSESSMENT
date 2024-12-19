@@ -192,14 +192,12 @@ def prediction_page():
             st.write('Prediction: YES, Client is likely to subscribe to new term deposit')
             
             # Display churn probability score
-            # prediction_probability = gb_model_tuned.predict_proba(input_features)[:, 1] 
-            # st.write(f'Term Deposit Probability Score: {round(prediction_probability[0] * 100)}%')
+            prediction_probability = model.predict_proba(input_features)[:, 1] 
+            st.write(f'Term Deposit Probability Score: {round(prediction_probability[0] * 100)}%')
             
             # Display accuracy score
             accuracy = 0.88  # Replace with your actual accuracy score
-            st.write(f'Accuracy Score: {accuracy:.2f}')
-            st.image("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/feature.png", use_container_width=True)
-            
+            st.write(f'Accuracy Score: {accuracy:.2f}')            
             
             # Plot feature importance 
             plt.style.use("fivethirtyeight")
@@ -213,15 +211,10 @@ def prediction_page():
                 
             # Plot bar chart
             plt.bar(feature_names[sorted_idx], feature_importances[sorted_idx])
-
             plt.xlabel("Features")
-
             plt.ylabel("Feature Importance")
-
             plt.title("Feature Importances")
-
             plt.xticks(rotation=90)
-
             st.pyplot(plt)
             
                         
