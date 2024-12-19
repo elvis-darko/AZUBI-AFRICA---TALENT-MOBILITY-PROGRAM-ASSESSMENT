@@ -1,18 +1,17 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
-import joblib, pickle
-import numpy as np
 import matplotlib.pyplot as plt
 import requests
-from PIL import Image
+import numpy as np
 import pandas as pd
-import sklearn
 from sklearn.preprocessing import LabelEncoder
-
+import pickle, joblib
+import urllib.request
+from sklearn.preprocessing import StandardScaler
 
 
 # Set style of page
-st.set_page_config(page_title="PEOPLE  NATIONAL BANK TERM DEPOSIT PREDICTION APP", page_icon="GH", initial_sidebar_state="expanded")
+st.set_page_config(page_title="AZUBI TMP - TERM DEPOSIT PREDICTION APP", page_icon="GH", initial_sidebar_state="expanded")
 
 hide_streamlit_style = """
             <style>
@@ -34,7 +33,7 @@ def calculate_campaign_diff(campaign, previous):
 
 # Set up home page
 def home_page():
-    st.title('CLIENT TERM SUBSCRIPTION APP')
+    st.title("CLIENTS' TERM DEPOSIT SUBSCRIPTION APP")
     exp_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/images.jpeg"
     st.image(exp_url, caption='PEOPLE NATIONAL BANK TERM DEPOSIT PREDICTION APP', use_container_width=True)
     st.write("""<h2>Welcome to the People's National Bank Client Term Deposit Prediction App!</h2>""", unsafe_allow_html=True)
@@ -52,20 +51,29 @@ def home_page():
         <li>Feedback (no): Provide input for improvements.</li>
     </ul>
     """, unsafe_allow_html=True)
-     
-   
 
 # Set up prediction page
 def prediction_page():    
+    
+    model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/dev/gb_model_tuned.pkl"
+
+    response = requests.get(model_url)
+    with open("gb_model_tuned.pkl", "wb") as f:
+        f.write(response.content)
+        
+    model = pickle.load(open("gb_model_tuned.pkl", "rb"))
+    
+
 
     # Title of the page
-    st.title('CLIENT TERM SUBSCRIPTION PREDICTION')
+    st.title('TERM DEPOSIT SUBSCRIPTION PREDICTION')
 
     # Add the image using st.image
     image_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/deposit.jpeg"
     st.image(image_url, caption='Term Deposit Prediction App', use_container_width=True)
 
-     # Create categorical features
+    
+    # Create categorical features
     job_type = ['housemaid', 'services', 'administration', 'blue-collar', 'technician',
        'retired', 'management', 'unemployed', 'self-employed', 'unknown',
        'entrepreneur', 'student']
@@ -103,6 +111,11 @@ def prediction_page():
     duration = st.number_input('Duration: Last contact duration of the year, in seconds')
     previous = st.number_input('Previous: Number of contacts performed before this campaign and for this client')
     poutcome = st.selectbox('Previous Outcome: Outcome of the previous marketing campaign', outcome)
+    emp_var_rate = st.number_input('Employment Variation Rate: Client Employment variation rate') 
+    cons_price_idx = st.number_input('Consumer Price Index: Current Consumer Price Index')
+    cons_conf_idx =  st.number_input('Consumer Confidence Index: Current Consumer Confidence Index')
+    euribor3m =  st.number_input('Euro Interbank Offered Rate: Current 3 months EURIBO rate')
+    nr_employed = st.number_input('Number of Employees: Number of Bank Employees')
     pdays = st.number_input('Pdays: Number of days that passed by after the client was last contacted from a previous campaign')
     campaign = st.number_input('Campaign: Number of contacts performed during this campaign and for this client')
 
@@ -113,7 +126,7 @@ def prediction_page():
     st.number_input("Campaign Difference", campaign_diff)
     
 
-    # Make prediction
+    # Make prediction, 
     if st.button('Predict'):
         features = {
             "age" : age,
@@ -131,80 +144,133 @@ def prediction_page():
             "pdays" : pdays,
             "previous" : previous, 
             "poutcome" : poutcome,  
+            "emp_var_rate" : emp_var_rate,
+            "cons_price_idx" : cons_price_idx,
+            "cons_conf_idx" : cons_conf_idx,
+            "euribor3m" : euribor3m,
+            "nr_employed" : nr_employed,
             "campaign_diff" : campaign_diff
-            }
-       
+        }
         
         st.dataframe([features])
-        #mlit input_features = np.array([[age, job, marital, education, default, housing, loan, contact, month, day_of_week, duration, previous, poutcome, pdays, campaign, campaign_diff]])
         input_features = pd.DataFrame([features])
 
+        # # Change datatype of dataframe and reshape
+        # input_features = input_features.astype(str)
+        
 
-        input_features["campaign_diff"] = input_features["campaign"] - input_features["previous"]
-        input_features = input_features.astype(str)
-        input_features = input_features.values.reshape(-1, 1)
+        # # import encoder
+        # encoder = LabelEncoder()
+        # input_features = encoder.fit_transform(input_features)
 
-        #input_features = pd.DataFrame([features])
+        # Scale data with standard scaler to scale numeric data
+        scaler = StandardScaler()
+        num_cols = ["age", "duration", "campaign", "pdays", "previous", "campaign_diff"]
+        input_features[num_cols] = scaler.fit_transform(input_features[num_cols])
+
+        #import encoder to encode categorical data
         encoder = LabelEncoder()
-        #encoder.transformstre(input_features[["job", "marital",  "education", "default", "housing", "loan", "contact", "month",  "day_of_week", "poutcome"]])
-        input_features = encoder.fit_transform(input_features)
+        input_features["job"] = encoder.fit_transform(input_features["job"])
+        input_features["marital"] = encoder.fit_transform(input_features["marital"])
+        input_features["education"] = encoder.fit_transform(input_features["education"])
+        input_features["default"] = encoder.fit_transform(input_features["default"])
+        input_features["housing"] = encoder.fit_transform(input_features["housing"])
+        input_features["loan"] = encoder.fit_transform(input_features["loan"])
+        input_features["contact"] = encoder.fit_transform(input_features["contact"])
+        input_features["month"] = encoder.fit_transform(input_features["month"])
+        input_features["day_of_week"] = encoder.fit_transform(input_features["day_of_week"])
+        input_features["poutcome"] = encoder.fit_transform(input_features["poutcome"])
 
-        # Raw GitHub URL of your model
-        model_url = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/dev/gb_model_tuned.pkl"
+        # Re-shape the dataframe
+        #input_features = input_features.values.reshape(-1, 1)
 
-        
-        
-        # Download the model file from the URL and save it locally
-        response = requests.get(model_url)
-        if response.status_code == 200:
-            with open("gb_model_tuned.pkl", "wb") as f:
-                f.write(response.content)
-            gb_model_tuned = pickle.load(open("gb_model_tuned.pkl", "rb"))
-        else:
-             st.error("Failed to load the model from GitHub.")
+        prediction = model.predict(input_features)
+        #prediction_probability = gb_model_tuned.predict_proba(input_features)[:, 1]  # Probability of churn
 
-        prediction = gb_model_tuned.predict([input_features])
-        
-        if prediction == "yes":
-            st.image("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/suscribe.png", use_container_width=True)
-            st.write('Prediction: Client likely to subscribe to new term deposit')
+        if prediction[0] == "yes":
+            st.image("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/suscribe.png")
+            st.write('Prediction: YES, Client is likely to subscribe to new term deposit')
+            
+            # Display churn probability score
+            prediction_probability = model.predict_proba(input_features)[:, 1] 
+            st.write(f'Term Deposit Probability Score: {round(prediction_probability[0] * 100)}%')
             
             # Display accuracy score
-            accuracy = 0.80  # Replace with your actual accuracy score
-            st.write(f'Accuracy Score: {accuracy:.2f}')
+            accuracy = 0.89  # Replace with your actual accuracy score
+            st.write(f'Accuracy Score: {round(accuracy * 100)}%')            
             
+            # Plot feature importance 
+            plt.style.use("fivethirtyeight")
+            feature_importances = model.feature_importances_
+
+            # Get feature names
+            feature_names = input_features.columns 
+
+            # Sort feature importances in descending order
+            sorted_idx = np.argsort(feature_importances)[::-1]
+                
+            # Plot bar chart
+            plt.bar(feature_names[sorted_idx], feature_importances[sorted_idx])
+            plt.xlabel("Features")
+            plt.ylabel("Feature Importance")
+            plt.title("Feature Importances")
+            plt.xticks(rotation=90)
+            st.pyplot(plt)
+            
+                        
             # Display recommendations for customers who did not subscribe to new term deposit
-            st.write("Recommendations for Term Deposit by clients:")
-            st.write("1. The marketing team should .")
-            st.write("2. Explore our new product offerings for additional benefits")
-            st.write("3. Unlock personalized recommendations and tailored experiences as a loyalty program member. We'll cater  for your preferences and needs like never before.")
-            st.write("4. Get an exclusive sneak peek at upcoming features or products. You can even participate in beta testing and help shape our future offerings.")
-            st.write("5. Accumulate rewards points with every purchase, which you can redeem for exciting prizes, discounts, or even free products.")
+            # st.write("Recommendations for Term Deposit by clients:")
+            # st.write("1. The marketing team should .")
+            # st.write("2. Explore our new product offerings for additional benefits")
+            # st.write("3. Unlock personalized recommendations and tailored experiences as a loyalty program member. We'll cater  for your preferences and needs like never before.")
+            # st.write("4. Get an exclusive sneak peek at upcoming features or products. You can even participate in beta testing and help shape our future offerings.")
+            # st.write("5. Accumulate rewards points with every purchase, which you can redeem for exciting prizes, discounts, or even free products.")
             
         else:
             # Handle the case where the prediction is churn
             unsuscribe_pic = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/unsuscribe.jpeg"
-            st.image(unsuscribe_pic, use_container_width=True) 
-            st.write('Prediction: Customer is likely not to subscribe to new term deposit')
+            st.image(unsuscribe_pic)
+            st.write('Prediction: NO, Customer is likely not to subscribe to new term deposit')
+             # Display churn probability score
+            prediction_probability = model.predict_proba(input_features)[:, 1] 
+            st.write(f'Term Deposit Probability Score: {round(prediction_probability[0] * 100)}%')
             
-            # Display churn probability score
-            #st.write(f'Churn Probability Score: {round(prediction_probability[0] * 100, 2)}%')
+            # Display accuracy score
+            accuracy = 0.89  # Replace with your actual accuracy score
+            st.write(f'Accuracy Score: {round(accuracy * 100)}%')            
+            
+            # Plot feature importance 
+            plt.style.use("fivethirtyeight")
+            feature_importances = model.feature_importances_
+
+            # Get feature names
+            feature_names = input_features.columns 
+
+            # Sort feature importances in descending order
+            sorted_idx = np.argsort(feature_importances)[::-1]
+                
+            # Plot bar chart
+            plt.bar(feature_names[sorted_idx], feature_importances[sorted_idx])
+            plt.xlabel("Features")
+            plt.ylabel("Feature Importance")
+            plt.title("Feature Importances")
+            plt.xticks(rotation=90)
+            st.pyplot(plt)
             
             # Add a message to clients who churn
             # Display recommendations for customers who did not subscribe to new term deposit
-            st.write("Recommendations for Term Deposit by clients:")
-            st.write("1. The marketing team should .")
-            st.write("2. Explore our new product offerings for additional benefits")
-            st.write("3. Unlock personalized recommendations and tailored experiences as a loyalty program member. We'll cater  for your preferences and needs like never before.")
-            st.write("4. Get an exclusive sneak peek at upcoming features or products. You can even participate in beta testing and help shape our future offerings.")
-            st.write("5. Accumulate rewards points with every purchase, which you can redeem for exciting prizes, discounts, or even free products.")
-            
+            # st.write("Recommendations for Term Deposit by clients:")
+            # st.write("1. The marketing team should .")
+            # st.write("2. Explore our new product offerings for additional benefits")
+            # st.write("3. Unlock personalized recommendations and tailored experiences as a loyalty program member. We'll cater  for your preferences and needs like never before.")
+            # st.write("4. Get an exclusive sneak peek at upcoming features or products. You can even participate in beta testing and help shape our future offerings.")
+            # st.write("5. Accumulate rewards points with every purchase, which you can redeem for exciting prizes, discounts, or even free products.") 
 
 def developers_page():
-     st.title('THE APP DEVELOPER')
-     dev_url = "https://github.com/elvis-darko/Team_Zurich_Capstone_Project/raw/main/Assets/images/developer.png"
-     st.image(dev_url, caption='Term Deposit Subscription App', use_container_width=True)
-     st.write(f"""
+    st.title('THE APP DEVELOPER')
+    dev_url = "https://github.com/elvis-darko/Team_Zurich_Capstone_Project/raw/main/Assets/images/developer.png"
+    st.image(dev_url, caption='Term Deposit Subscription App', use_container_width=True)
+    st.write(f"""
     <p>This term deposit subscription App was solely built by Elvis Darko for the People's National Bank</p>
     <p>Elvis Darko is a budding Azubi Africa trained Data Scientist who aspires to be a fully fledged Artificial Intelligence Engineer</p>
     """, unsafe_allow_html=True)
@@ -215,17 +281,17 @@ with st.sidebar:
     st.image(cust_url, use_container_width=True)
     selected = option_menu(
         menu_title=None,
-        options=["HOME", "PREDICTION", "DEVELOPER"],
+        options=["Home", "Prediction", "Developer"],
         icons=["house", "droplet", "people"],
         styles=css_style
    )
     
 
-if selected == "HOME":
+if selected == "Home":
     home_page()
 
-elif selected == "PREDICTION":
+elif selected == "Prediction":
     prediction_page()
 
-elif selected == "DEVELOPER":
+elif selected == "Developer":
     developers_page()
