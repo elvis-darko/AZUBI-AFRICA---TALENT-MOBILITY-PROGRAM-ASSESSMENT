@@ -196,8 +196,8 @@ def prediction_page():
             st.write(f'Term Deposit Probability Score: {round(prediction_probability[0] * 100)}%')
             
             # Display accuracy score
-            accuracy = 0.88  # Replace with your actual accuracy score
-            st.write(f'Accuracy Score: {accuracy:.2f}')            
+            accuracy = 0.89  # Replace with your actual accuracy score
+            st.write(f'Accuracy Score: {round(accuracy[0] * 100)}%')            
             
             # Plot feature importance 
             plt.style.use("fivethirtyeight")
