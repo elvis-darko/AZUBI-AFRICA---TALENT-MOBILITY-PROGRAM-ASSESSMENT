@@ -182,7 +182,7 @@ def prediction_page():
         input_features["poutcome"] = encoder.fit_transform(input_features["poutcome"])
 
         # Re-shape the dataframe
-        input_features = input_features.values.reshape(-1, 1)
+        #input_features = input_features.values.reshape(-1, 1)
 
         prediction = model.predict(input_features)
         #prediction_probability = gb_model_tuned.predict_proba(input_features)[:, 1]  # Probability of churn
