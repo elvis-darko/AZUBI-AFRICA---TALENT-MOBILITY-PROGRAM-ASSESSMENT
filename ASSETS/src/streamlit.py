@@ -199,7 +199,27 @@ def prediction_page():
             accuracy = 0.88  # Replace with your actual accuracy score
             st.write(f'Accuracy Score: {accuracy:.2f}')
             st.image("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/feature.png", use_container_width=True)
+            # Plot feature importance 
+            feature_importances = model.feature_importances_
 
+            # Get feature names
+            feature_names = input_features.columns 
+
+            # Sort feature importances in descending order
+            sorted_idx = np.argsort(feature_importances)[::-1]
+                
+            # Plot bar chart
+            plt.bar(feature_names[sorted_idx], feature_importances[sorted_idx])
+
+            plt.xlabel("Features")
+
+            plt.ylabel("Feature Importance")
+
+            plt.title("Feature Importances")
+
+            plt.xticks(rotation=90)
+
+            st.pyplot(plt)
             
                         
             # Display recommendations for customers who did not subscribe to new term deposit
