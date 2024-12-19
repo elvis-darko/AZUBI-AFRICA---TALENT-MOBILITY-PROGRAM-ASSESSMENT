@@ -253,7 +253,7 @@ def prediction_page():
             <ul>
                 <li>The marketing department should have frequently contact these clients and explain to them the benefits of having term deposits</li>
                 <li>These clients should be targeted at the point of the year where consumer confiedence is at its peak. These clients will likely subscribe to new deposit when they are prepared to spend more.</li>
-                <li>The marketing department should hire more staff and train them to frequently call and handle this client to persuade him/her to try a new subscription.</li>
+                <li>The marketing department should hire and train new team members to frequently call and handle this client to persuade him/her to try a new subscription.</li>
             </ul>
             """, unsafe_allow_html=True)
 # Create developer page of streamlit app
