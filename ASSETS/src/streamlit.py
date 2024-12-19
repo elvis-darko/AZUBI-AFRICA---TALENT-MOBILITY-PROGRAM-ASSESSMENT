@@ -157,7 +157,7 @@ def prediction_page():
 
         # # Change datatype of dataframe and reshape
         # input_features = input_features.astype(str)
-        input_features = input_features.values.reshape(-1, 1)
+        
 
         # # import encoder
         # encoder = LabelEncoder()
@@ -180,6 +180,9 @@ def prediction_page():
         input_features["month"] = encoder.fit_transform(input_features["month"])
         input_features["day_of_week"] = encoder.fit_transform(input_features["day_of_week"])
         input_features["poutcome"] = encoder.fit_transform(input_features["poutcome"])
+
+        # Re-shape the dataframe
+        input_features = input_features.values.reshape(-1, 1)
 
         prediction = model.predict([input_features])
         #prediction_probability = gb_model_tuned.predict_proba(input_features)[:, 1]  # Probability of churn
