@@ -231,12 +231,31 @@ def prediction_page():
             unsuscribe_pic = "https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/unsuscribe.jpeg"
             st.image(unsuscribe_pic)
             st.write('Prediction: NO, Customer is likely not to subscribe to new term deposit')
+             # Display churn probability score
+            prediction_probability = model.predict_proba(input_features)[:, 1] 
+            st.write(f'Term Deposit Probability Score: {round(prediction_probability[0] * 100)}%')
+            
             # Display accuracy score
-            accuracy = 0.88  # Replace with your actual accuracy score
-            st.write(f'Accuracy Score: {accuracy:.2f}')
-            st.image("https://github.com/elvis-darko/AZUBI-AFRICA---TALENT-MOBILITY-PROGRAM-ASSESSMENT/raw/main/ASSETS/images/feature.png", use_container_width=True)
-            # Display churn probability score
-            #st.write(f'Churn Probability Score: {round(prediction_probability[0] * 100, 2)}%')
+            accuracy = 0.89  # Replace with your actual accuracy score
+            st.write(f'Accuracy Score: {round(accuracy * 100)}%')            
+            
+            # Plot feature importance 
+            plt.style.use("fivethirtyeight")
+            feature_importances = model.feature_importances_
+
+            # Get feature names
+            feature_names = input_features.columns 
+
+            # Sort feature importances in descending order
+            sorted_idx = np.argsort(feature_importances)[::-1]
+                
+            # Plot bar chart
+            plt.bar(feature_names[sorted_idx], feature_importances[sorted_idx])
+            plt.xlabel("Features")
+            plt.ylabel("Feature Importance")
+            plt.title("Feature Importances")
+            plt.xticks(rotation=90)
+            st.pyplot(plt)
             
             # Add a message to clients who churn
             # Display recommendations for customers who did not subscribe to new term deposit
