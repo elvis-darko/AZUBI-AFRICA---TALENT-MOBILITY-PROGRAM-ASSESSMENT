@@ -197,7 +197,7 @@ def prediction_page():
             
             # Display accuracy score
             accuracy = 0.89  # Replace with your actual accuracy score
-            st.write(f'Accuracy Score: {round(accuracy[0] * 100)}%')            
+            st.write(f'Accuracy Score: {round(accuracy * 100)}%')            
             
             # Plot feature importance 
             plt.style.use("fivethirtyeight")
