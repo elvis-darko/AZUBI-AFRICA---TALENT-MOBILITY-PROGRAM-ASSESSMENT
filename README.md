@@ -7,7 +7,7 @@ For this project, I have been tasked to predict whether a client will subscribe 
 ## SUMMARY
 | PROJET CODE      | NAME        |   DEPLOYED APP | DESCRIPTION|
 |-----------|-------------|------|------|
-|TMP_1         | CLIENT TERM DEPOSIT PREDICTION  | [STREAMLIT APP](https://elvisdarkotmp.streamlit.app/)| Data Scientist is tasked to train and deploy a machine learning model that that predicts the likelihood of a client subscribing for the Bank's Term Deposit |
+|TMP_1         | CLIENT TERM DEPOSIT PREDICTION  | [STREAMLIT APP](https://elvisdarkotmp.streamlit.app/)| Data Scientist is tasked to train and deploy a machine learning model that predicts the likelihood of a client subscribing for the Bank's Term Deposit |
 
 Sample of my tasks are as follows;
 1. Conduct Exploratory Data Analysis (EDA)</br>
